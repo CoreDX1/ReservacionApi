@@ -131,3 +131,10 @@ CREATE TABLE PasswordResets (
 
 
 --- INSERT DATA ---
+
+--- DELETE TABLE --
+
+DROP TABLE Clientes;
+DROP TABLE Horarios;
+DROP TABLE Mesas;
+DROP TABLE Reservaciones;
