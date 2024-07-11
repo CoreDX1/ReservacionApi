@@ -128,3 +128,6 @@ CREATE TABLE PasswordResets (
     CreatedAt DATETIME DEFAULT GETDATE(),
     FOREIGN KEY (UserID) REFERENCES Users(UserID)
 );
+
+
+--- INSERT DATA ---

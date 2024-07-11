@@ -10,17 +10,17 @@
 1. 🐺 [¿Que es una API?](#-que-es-una-api)
 2. 🌐 [Web Site](#web-site)
 2. 🏠 [Landing Page](#-landing-page)
-3. 🔨 [Installation](#installation)
-4. 🚀 [Build](#build)
-5. 🐳 [Docker](#docker)
-6. 💯 [Tests](#tests)
-7. 🌿 [Env variables](#env-variables)
-8. ☑️ [Code analysis and consistency](#code-analysis-and-consistency)
-9. 📈 [Releases & Changelog](#versions)
-10. 🐙 [GitHub Actions](#github-actions)
-11. ✨ [Misc commands](#misc-commands)
-12. ©️ [License](#license)
-13. ❤️ [Contributors](#contributors)
+3. 📦 [Arquitectura en Capas](#-arquitectura-en-capaas)
+4. 📖 [Arquitectura MVC](#-arquitectura-mvc)
+5. 📑 [Patron de Diseño](#-patron-de-diseno)
+    * [Patron DTO](#-patron-dto)
+    * [Patron Repository](#-patron-repository)
+    * [Patron UnitOfWork](#-patron-unitofwork)
+    * [Patron Mediator](#-patron-mediator)
+    * [Patron CQRS](#-patron-cqrs)
+    
+
+
 
 ## 🐺 ¿Que es una API?
 
@@ -28,3 +28,7 @@
 ## 🌐 Web Site
 
 ## 🏠 Landing Page
+
+## 📦 Arquitectura en Capaas
+
+## 📖 Patron de Diseño
