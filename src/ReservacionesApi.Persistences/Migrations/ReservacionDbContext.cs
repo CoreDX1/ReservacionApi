@@ -46,26 +46,7 @@ public partial class ReservacionDbContext : DbContext
 
         modelBuilder.Entity<LoginAttempt>(entity => { });
 
-        modelBuilder.Entity<PasswordReset>(entity =>
-        {
-            entity.HasKey(e => e.ResetId).HasName("PK__Password__783CF7AD4A6AE763");
-
-            entity.Property(e => e.ResetId).HasColumnName("ResetID");
-            entity
-                .Property(e => e.CreatedAt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
-            entity.Property(e => e.Expiration).HasColumnType("datetime");
-            entity.Property(e => e.ResetToken).HasMaxLength(255);
-            entity.Property(e => e.UserId).HasColumnName("UserID");
-
-            entity
-                .HasOne(d => d.User)
-                .WithMany(p => p.PasswordResets)
-                .HasForeignKey(d => d.UserId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__PasswordR__UserI__0D7A0286");
-        });
+        modelBuilder.Entity<PasswordReset>(entity => { });
 
         modelBuilder.Entity<Payment>(entity =>
         {

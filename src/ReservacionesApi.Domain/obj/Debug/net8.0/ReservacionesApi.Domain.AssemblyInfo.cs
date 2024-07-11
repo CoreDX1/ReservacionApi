@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ReservacionesApi.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+aa2243363374266245ab59745bcdd05a13b734f2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c5bc23c0bdf843d2e14f256760efdd2ed0f3c903")]
 [assembly: System.Reflection.AssemblyProductAttribute("ReservacionesApi.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ReservacionesApi.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
