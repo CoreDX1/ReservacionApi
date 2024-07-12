@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="../buildMultiTargeting/ReservacionesApi.WebUI.props" />
-</Project>

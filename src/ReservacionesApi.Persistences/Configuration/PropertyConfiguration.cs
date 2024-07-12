@@ -15,18 +15,12 @@ public class PropertyConfiguration : IEntityTypeConfiguration<Property>
         builder.Property(e => e.AverageRating).HasColumnType("decimal(3, 2)");
         builder.Property(e => e.City).HasMaxLength(100);
         builder.Property(e => e.Country).HasMaxLength(100);
-        builder
-            .Property(e => e.CreatedAt)
-            .HasDefaultValueSql("(getdate())")
-            .HasColumnType("datetime");
+        builder.Property(e => e.CreatedAt).HasDefaultValueSql("(getdate())").HasColumnType("datetime");
         builder.Property(e => e.Name).HasMaxLength(255);
         builder.Property(e => e.OwnerId).HasColumnName("OwnerID");
         builder.Property(e => e.PricePerNight).HasColumnType("decimal(10, 2)");
         builder.Property(e => e.State).HasMaxLength(100);
-        builder
-            .Property(e => e.UpdatedAt)
-            .HasDefaultValueSql("(getdate())")
-            .HasColumnType("datetime");
+        builder.Property(e => e.UpdatedAt).HasDefaultValueSql("(getdate())").HasColumnType("datetime");
 
         builder
             .HasOne(d => d.Owner)
@@ -38,7 +32,7 @@ public class PropertyConfiguration : IEntityTypeConfiguration<Property>
         builder
             .HasMany(d => d.Amenities)
             .WithMany(p => p.Properties)
-            .Usingbuilder<Dictionary<string, object>>(
+            .UsingEntity<Dictionary<string, object>>(
                 "PropertyAmenity",
                 r =>
                     r.HasOne<Amenity>()
