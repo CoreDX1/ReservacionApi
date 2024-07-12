@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using ReservacionesApi.Domain.Entities;
 
 namespace ReservacionesApi.Persistences.Migrations;
@@ -37,7 +36,7 @@ public partial class ReservacionDbContext : DbContext
     {
         OnModelCreatingPartial(modelBuilder);
 
-        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ReservacionDbContext).Assembly);
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
