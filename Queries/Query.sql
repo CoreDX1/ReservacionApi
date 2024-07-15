@@ -132,9 +132,8 @@ CREATE TABLE PasswordResets (
 
 --- INSERT DATA ---
 
---- DELETE TABLE --
+INSERT INTO Users (Email, PasswordHash,UserName, FullName, EmailVerified)
+VALUES ('W4wUq@example.com', 'password', 'admin', 'Admin User', 1);
 
-DROP TABLE Clientes;
-DROP TABLE Horarios;
-DROP TABLE Mesas;
-DROP TABLE Reservaciones;
+
+SELECT * FROM Users;
