@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using ReservacionesApi.Application.Contracts.Persistence;
+using ReservacionesApi.Domain.Entities;
 
 namespace ReservacionesApi.WebUI.Controllers;
 
@@ -6,9 +8,16 @@ namespace ReservacionesApi.WebUI.Controllers;
 [Route("api/[controller]")]
 public class UserController
 {
-    [HttpGet]
-    public string Get()
+    private readonly IUserRepository _userRepository;
+
+    public UserController(IUserRepository userRepository)
     {
-        return "Hello World";
+        _userRepository = userRepository;
+    }
+
+    [HttpGet]
+    public async Task<IEnumerable<User>> Get()
+    {
+        return await _userRepository.GetAllAsync();
     }
 }
