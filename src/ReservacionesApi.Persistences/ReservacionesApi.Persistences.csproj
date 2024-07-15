@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,6 +16,7 @@
   
   <ItemGroup>
     <ProjectReference Include="..\ReservacionesApi.Domain\ReservacionesApi.Domain.csproj" />
+    <ProjectReference Include="..\ReservacionesApi.Application\ReservacionesApi.Application.csproj" />
   </ItemGroup>
 
 </Project>

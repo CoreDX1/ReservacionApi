@@ -1596,6 +1596,58 @@
             "rid": "win"
           }
         }
+      },
+      "ReservacionesApi.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "ReservacionesApi.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ReservacionesApi.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ReservacionesApi.Application.dll": {}
+        }
+      },
+      "ReservacionesApi.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/ReservacionesApi.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ReservacionesApi.Domain.dll": {}
+        }
+      },
+      "ReservacionesApi.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.SqlServer": "8.0.7",
+          "ReservacionesApi.Persistences": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ReservacionesApi.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ReservacionesApi.Infrastructure.dll": {}
+        }
+      },
+      "ReservacionesApi.Persistences/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.SqlServer": "8.0.7",
+          "ReservacionesApi.Application": "1.0.0",
+          "ReservacionesApi.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ReservacionesApi.Persistences.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ReservacionesApi.Persistences.dll": {}
+        }
       }
     }
   },
@@ -4505,6 +4557,26 @@
         "system.windows.extensions.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "ReservacionesApi.Application/1.0.0": {
+      "type": "project",
+      "path": "../ReservacionesApi.Application/ReservacionesApi.Application.csproj",
+      "msbuildProject": "../ReservacionesApi.Application/ReservacionesApi.Application.csproj"
+    },
+    "ReservacionesApi.Domain/1.0.0": {
+      "type": "project",
+      "path": "../ReservacionesApi.Domain/ReservacionesApi.Domain.csproj",
+      "msbuildProject": "../ReservacionesApi.Domain/ReservacionesApi.Domain.csproj"
+    },
+    "ReservacionesApi.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../ReservacionesApi.Infrastructure/ReservacionesApi.Infrastructure.csproj",
+      "msbuildProject": "../ReservacionesApi.Infrastructure/ReservacionesApi.Infrastructure.csproj"
+    },
+    "ReservacionesApi.Persistences/1.0.0": {
+      "type": "project",
+      "path": "../ReservacionesApi.Persistences/ReservacionesApi.Persistences.csproj",
+      "msbuildProject": "../ReservacionesApi.Persistences/ReservacionesApi.Persistences.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -4512,6 +4584,7 @@
       "Microsoft.AspNetCore.OpenApi >= 8.0.7",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.7",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.7",
+      "ReservacionesApi.Infrastructure >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.4.0"
     ]
   },
@@ -4539,7 +4612,11 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/home/core/Desktop/Project/ReservacionesAPI/src/ReservacionesApi.Infrastructure/ReservacionesApi.Infrastructure.csproj": {
+              "projectPath": "/home/core/Desktop/Project/ReservacionesAPI/src/ReservacionesApi.Infrastructure/ReservacionesApi.Infrastructure.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

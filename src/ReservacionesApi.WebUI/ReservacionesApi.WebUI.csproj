@@ -18,5 +18,10 @@
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.7" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
+  
+
+  <ItemGroup>
+    <ProjectReference Include="..\ReservacionesApi.Infrastructure\ReservacionesApi.Infrastructure.csproj" />
+  </ItemGroup>
 
 </Project>
