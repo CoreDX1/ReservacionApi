@@ -1,3 +1,4 @@
+using ReservacionesApi.Application.Extensions;
 using ReservacionesApi.Infrastructure.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,7 @@ builder.Services.AddControllers();
 var configuration = builder.Configuration;
 
 builder.Services.AddPersistenceServices(configuration);
+builder.Services.AddApplicationLayer();
 
 var app = builder.Build();
 
