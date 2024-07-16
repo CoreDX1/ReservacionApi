@@ -17,6 +17,7 @@ public static class InjectionExtensions
         // Agregar validadores para la capa de aplicación
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
+        // TOREVIEW: Patron de Mediador
         // Agregar mediatr para la capa de aplicación
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
