@@ -20,8 +20,9 @@ public class CreateUserCommand : IRequest<ApiResult<User>>
     public string PhoneNumber { get; set; }
 
     // Clase Mediador
-    public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ApiResult<User>>
-    {
-        public async Task<ApiResult<User>> Handle(CreateUserCommand request, CancellationToken cancellationToken) { }
-    }
+    // public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ApiResult<User>>
+    // {
+    //     public async Task<ApiResult<User>> Handle(CreateUserCommand request, CancellationToken cancellationToken) {
+    //     }
+    // }
 }
