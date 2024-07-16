@@ -15,6 +15,24 @@
           }
         }
       },
+      "Ardalis.Specification.EntityFrameworkCore/8.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Ardalis.Specification": "8.0.0",
+          "Microsoft.EntityFrameworkCore": "8.0.0",
+          "Microsoft.EntityFrameworkCore.Relational": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/Ardalis.Specification.EntityFrameworkCore.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Ardalis.Specification.EntityFrameworkCore.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
       "AutoMapper/13.0.1": {
         "type": "package",
         "dependencies": {
@@ -1109,6 +1127,7 @@
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "Ardalis.Specification": "8.0.0",
+          "Ardalis.Specification.EntityFrameworkCore": "8.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.7",
           "ReservacionesApi.Application": "1.0.0",
           "ReservacionesApi.Domain": "1.0.0"
@@ -1145,6 +1164,27 @@
         "lib/netstandard2.0/Ardalis.Specification.dll",
         "lib/netstandard2.0/Ardalis.Specification.pdb",
         "lib/netstandard2.0/Ardalis.Specification.xml"
+      ]
+    },
+    "Ardalis.Specification.EntityFrameworkCore/8.0.0": {
+      "sha512": "fDaCf5/7rm7Ul7yE8YafyWhxCSmWCPd+/4BUxM26Hbnb2PKZJssjAevzx9ZceASJKe4HUndSEKXJ8iz+R3rsIw==",
+      "type": "package",
+      "path": "ardalis.specification.entityframeworkcore/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ardalis.specification.entityframeworkcore.8.0.0.nupkg.sha512",
+        "ardalis.specification.entityframeworkcore.nuspec",
+        "icon.png",
+        "lib/net6.0/Ardalis.Specification.EntityFrameworkCore.dll",
+        "lib/net6.0/Ardalis.Specification.EntityFrameworkCore.pdb",
+        "lib/net6.0/Ardalis.Specification.EntityFrameworkCore.xml",
+        "lib/net7.0/Ardalis.Specification.EntityFrameworkCore.dll",
+        "lib/net7.0/Ardalis.Specification.EntityFrameworkCore.pdb",
+        "lib/net7.0/Ardalis.Specification.EntityFrameworkCore.xml",
+        "lib/net8.0/Ardalis.Specification.EntityFrameworkCore.dll",
+        "lib/net8.0/Ardalis.Specification.EntityFrameworkCore.pdb",
+        "lib/net8.0/Ardalis.Specification.EntityFrameworkCore.xml"
       ]
     },
     "AutoMapper/13.0.1": {
