@@ -14,9 +14,9 @@ public class UserService : IUserService
         _userRepository = userRepository;
     }
 
-    public async Task<ApiResult<IEnumerable<User>>> UserListAsync()
+    public async Task<ApiResult<IEnumerable<User>>> UserListAsync(IReadRepository<User> repo, CancellationToken cancellationToken)
     {
-        var users = await _userRepository.GetAllAsync();
+        var users = await repo.ListAsync(cancellationToken);
 
         if (!users.Any())
         {
