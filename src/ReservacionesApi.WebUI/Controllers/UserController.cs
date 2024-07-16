@@ -1,23 +1,23 @@
 using Microsoft.AspNetCore.Mvc;
-using ReservacionesApi.Application.Contracts.Persistence;
-using ReservacionesApi.Domain.Entities;
+using ReservacionesApi.Application.Interfaces;
 
 namespace ReservacionesApi.WebUI.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class UserController
+public class UserController : ControllerBase
 {
-    private readonly IUserRepository _userRepository;
+    private readonly IUserService _userService;
 
-    public UserController(IUserRepository userRepository)
+    public UserController(IUserService userService)
     {
-        _userRepository = userRepository;
+        _userService = userService;
     }
 
     [HttpGet]
-    public async Task<IEnumerable<User>> Get()
+    public async Task<IActionResult> GetUserList()
     {
-        return await _userRepository.GetAllAsync();
+        var result = await _userService.UserListAsync();
+        return Ok(result);
     }
 }

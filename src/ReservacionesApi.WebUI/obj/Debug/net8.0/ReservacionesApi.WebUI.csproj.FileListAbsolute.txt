@@ -151,3 +151,8 @@
 /home/core/Desktop/Project/ReservacionesAPI/src/ReservacionesApi.WebUI/bin/Debug/net8.0/ReservacionesApi.Persistences.pdb
 /home/core/Desktop/Project/ReservacionesAPI/src/ReservacionesApi.WebUI/bin/Debug/net8.0/ReservacionesApi.Application.dll
 /home/core/Desktop/Project/ReservacionesAPI/src/ReservacionesApi.WebUI/bin/Debug/net8.0/ReservacionesApi.Application.pdb
+/home/core/Desktop/Project/ReservacionesAPI/src/ReservacionesApi.WebUI/bin/Debug/net8.0/AutoMapper.dll
+/home/core/Desktop/Project/ReservacionesAPI/src/ReservacionesApi.WebUI/bin/Debug/net8.0/FluentValidation.dll
+/home/core/Desktop/Project/ReservacionesAPI/src/ReservacionesApi.WebUI/bin/Debug/net8.0/FluentValidation.DependencyInjectionExtensions.dll
+/home/core/Desktop/Project/ReservacionesAPI/src/ReservacionesApi.WebUI/bin/Debug/net8.0/MediatR.dll
+/home/core/Desktop/Project/ReservacionesAPI/src/ReservacionesApi.WebUI/bin/Debug/net8.0/MediatR.Contracts.dll

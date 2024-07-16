@@ -14,7 +14,7 @@ public class UserService : IUserService
         _userRepository = userRepository;
     }
 
-    public async Task<ApiResult<IEnumerable<User>>> UserList()
+    public async Task<ApiResult<IEnumerable<User>>> UserListAsync()
     {
         var users = await _userRepository.GetAllAsync();
 

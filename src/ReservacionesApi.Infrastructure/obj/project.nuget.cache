@@ -1,11 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "pLXavEPqynE=",
+  "dgSpecHash": "h3hNOSc68Yc=",
   "success": true,
   "projectFilePath": "/home/core/Desktop/Project/ReservacionesAPI/src/ReservacionesApi.Infrastructure/ReservacionesApi.Infrastructure.csproj",
   "expectedPackageFiles": [
+    "/home/core/.nuget/packages/automapper/13.0.1/automapper.13.0.1.nupkg.sha512",
     "/home/core/.nuget/packages/azure.core/1.35.0/azure.core.1.35.0.nupkg.sha512",
     "/home/core/.nuget/packages/azure.identity/1.10.3/azure.identity.1.10.3.nupkg.sha512",
+    "/home/core/.nuget/packages/fluentvalidation/11.9.2/fluentvalidation.11.9.2.nupkg.sha512",
+    "/home/core/.nuget/packages/fluentvalidation.dependencyinjectionextensions/11.9.2/fluentvalidation.dependencyinjectionextensions.11.9.2.nupkg.sha512",
+    "/home/core/.nuget/packages/mediatr/12.3.0/mediatr.12.3.0.nupkg.sha512",
+    "/home/core/.nuget/packages/mediatr.contracts/2.0.1/mediatr.contracts.2.0.1.nupkg.sha512",
     "/home/core/.nuget/packages/microsoft.bcl.asyncinterfaces/1.1.1/microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "/home/core/.nuget/packages/microsoft.csharp/4.5.0/microsoft.csharp.4.5.0.nupkg.sha512",
     "/home/core/.nuget/packages/microsoft.data.sqlclient/5.1.5/microsoft.data.sqlclient.5.1.5.nupkg.sha512",

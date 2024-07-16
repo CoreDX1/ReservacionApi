@@ -13,6 +13,7 @@ builder.Services.AddControllers();
 
 var configuration = builder.Configuration;
 
+// add services to the container.
 builder.Services.AddPersistenceServices(configuration);
 builder.Services.AddApplicationLayer();
 

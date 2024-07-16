@@ -8,7 +8,11 @@ public partial class ReservacionDbContext : DbContext
     public ReservacionDbContext() { }
 
     public ReservacionDbContext(DbContextOptions<ReservacionDbContext> options)
-        : base(options) { }
+        : base(options)
+    {
+        // TOREVIEW: Investigar que hace el ChangeTracker
+        ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+    }
 
     public DbSet<Amenity> Amenities { get; set; }
 
