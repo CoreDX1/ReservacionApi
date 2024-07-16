@@ -7,11 +7,14 @@ namespace ReservacionesApi.Persistences.Repositories;
 public class GenericRepository<T> : IGenericRepositoryAsync<T>
     where T : class
 {
-    protected readonly ReservacionDbContext _dbContext;
+    internal ReservacionDbContext dbContext;
+
+    internal DbSet<T> dbSet;
 
     public GenericRepository(ReservacionDbContext dbContext)
     {
-        _dbContext = dbContext;
+        this.dbContext = dbContext;
+        dbSet = this.dbContext.Set<T>();
     }
 
     public Task DeleteRangeAsync(IEnumerable<T> entities)
@@ -21,33 +24,33 @@ public class GenericRepository<T> : IGenericRepositoryAsync<T>
 
     public async Task<IReadOnlyList<T>> GetAllAsync()
     {
-        return await _dbContext.Set<T>().AsNoTracking().ToListAsync();
+        return await dbSet.ToListAsync();
     }
 
     public async Task<T> AddAsync(T entity)
     {
-        await _dbContext.Set<T>().AddAsync(entity);
-        await _dbContext.SaveChangesAsync();
+        await dbSet.AddAsync(entity);
+        await dbContext.SaveChangesAsync();
 
         return entity;
     }
 
     public async Task<T> GetByIdAsync(int id)
     {
-        return await _dbContext.Set<T>().FindAsync(id);
+        return await dbSet.FindAsync(id);
     }
 
     public Task UpdateAsync(T entity)
     {
-        _dbContext.Entry(entity).State = EntityState.Modified;
+        dbContext.Entry(entity).State = EntityState.Modified;
 
-        return _dbContext.SaveChangesAsync();
+        return dbContext.SaveChangesAsync();
     }
 
     public async Task DeleteAsync(T entity)
     {
-        _dbContext.Set<T>().Remove(entity);
+        dbSet.Remove(entity);
 
-        await _dbContext.SaveChangesAsync();
+        await dbContext.SaveChangesAsync();
     }
 }

@@ -156,3 +156,5 @@
 /home/core/Desktop/Project/ReservacionesAPI/src/ReservacionesApi.WebUI/bin/Debug/net8.0/FluentValidation.DependencyInjectionExtensions.dll
 /home/core/Desktop/Project/ReservacionesAPI/src/ReservacionesApi.WebUI/bin/Debug/net8.0/MediatR.dll
 /home/core/Desktop/Project/ReservacionesAPI/src/ReservacionesApi.WebUI/bin/Debug/net8.0/MediatR.Contracts.dll
+/home/core/Desktop/Project/ReservacionesAPI/src/ReservacionesApi.WebUI/bin/Debug/net8.0/Ardalis.Specification.dll
+/home/core/Desktop/Project/ReservacionesAPI/src/ReservacionesApi.WebUI/bin/Debug/net8.0/Ardalis.Specification.EntityFrameworkCore.dll
