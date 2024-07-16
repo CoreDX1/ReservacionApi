@@ -7,17 +7,16 @@ namespace ReservacionesApi.Application.Features.Users;
 
 public class UserService : IUserService
 {
-    private readonly IUserRepository _userRepository;
+    private readonly IUnitOfWork unitOfWork;
 
-    public UserService(IUserRepository userRepository)
+    public UserService(IUnitOfWork unitOfWork)
     {
-        _userRepository = userRepository;
+        this.unitOfWork = unitOfWork;
     }
 
-    public async Task<ApiResult<IEnumerable<User>>> UserListAsync(IReadRepository<User> repo, CancellationToken cancellationToken)
+    public async Task<ApiResult<IEnumerable<User>>> UserListAsync()
     {
-        var users = await repo.ListAsync(cancellationToken);
-
+        var users = await unitOfWork.UserRepository.GetAllAsync();
         if (!users.Any())
         {
             return ApiResult<IEnumerable<User>>.Error("Users not found.", 404);
