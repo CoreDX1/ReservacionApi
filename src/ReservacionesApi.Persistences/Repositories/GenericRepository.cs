@@ -7,8 +7,8 @@ namespace ReservacionesApi.Persistences.Repositories;
 public class GenericRepository<T> : IGenericRepositoryAsync<T>
     where T : class
 {
+    // TOREVIEW: Investigar que hace "internal"
     internal ReservacionDbContext dbContext;
-
     internal DbSet<T> dbSet;
 
     public GenericRepository(ReservacionDbContext dbContext)
