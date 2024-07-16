@@ -6,16 +6,16 @@ namespace ReservacionesApi.Application.Features.Users.Queries.GetUsersList;
 
 public class GetUserListQuery
 {
-    private readonly IUserRepository _userRepository;
+    private readonly IUserRepository userRepository;
 
     public GetUserListQuery(IUserRepository userRepository)
     {
-        _userRepository = userRepository;
+        this.userRepository = userRepository;
     }
 
     public async Task<ApiResult<IEnumerable<User>>> UserList()
     {
-        IEnumerable<User> users = await _userRepository.GetAllAsync();
+        IEnumerable<User> users = await userRepository.GetAllAsync();
 
         if (!users.Any())
             return ApiResult<IEnumerable<User>>.Error("Users not found.", 404);
