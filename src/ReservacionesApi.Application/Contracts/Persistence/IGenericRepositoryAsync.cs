@@ -1,5 +1,9 @@
 namespace ReservacionesApi.Application.Contracts.Persistence;
 
+/// <summary>
+/// Es un repositorio genérico de tipo T.
+/// </summary>
+/// <typeparam name="T"></typeparam>
 public interface IGenericRepositoryAsync<T>
     where T : class
 {
