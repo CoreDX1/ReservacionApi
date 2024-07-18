@@ -1714,6 +1714,7 @@
           "MediatR": "12.3.0",
           "Microsoft.EntityFrameworkCore": "8.0.7",
           "Microsoft.Extensions.DependencyInjection": "8.0.0",
+          "ReservacionesApi.Common": "1.0.0",
           "ReservacionesApi.Domain": "1.0.0"
         },
         "compile": {
@@ -1721,6 +1722,16 @@
         },
         "runtime": {
           "bin/placeholder/ReservacionesApi.Application.dll": {}
+        }
+      },
+      "ReservacionesApi.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/ReservacionesApi.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ReservacionesApi.Common.dll": {}
         }
       },
       "ReservacionesApi.Domain/1.0.0": {
@@ -4811,6 +4822,11 @@
       "type": "project",
       "path": "../ReservacionesApi.Application/ReservacionesApi.Application.csproj",
       "msbuildProject": "../ReservacionesApi.Application/ReservacionesApi.Application.csproj"
+    },
+    "ReservacionesApi.Common/1.0.0": {
+      "type": "project",
+      "path": "../ReservacionesApi.Common/ReservacionesApi.Common.csproj",
+      "msbuildProject": "../ReservacionesApi.Common/ReservacionesApi.Common.csproj"
     },
     "ReservacionesApi.Domain/1.0.0": {
       "type": "project",

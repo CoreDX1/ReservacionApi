@@ -275,6 +275,16 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
+      "ReservacionesApi.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/ReservacionesApi.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ReservacionesApi.Common.dll": {}
+        }
+      },
       "ReservacionesApi.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
@@ -728,6 +738,11 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "ReservacionesApi.Common/1.0.0": {
+      "type": "project",
+      "path": "../ReservacionesApi.Common/ReservacionesApi.Common.csproj",
+      "msbuildProject": "../ReservacionesApi.Common/ReservacionesApi.Common.csproj"
+    },
     "ReservacionesApi.Domain/1.0.0": {
       "type": "project",
       "path": "../ReservacionesApi.Domain/ReservacionesApi.Domain.csproj",
@@ -742,6 +757,7 @@
       "MediatR >= 12.3.0",
       "Microsoft.EntityFrameworkCore >= 8.0.7",
       "Microsoft.Extensions.DependencyInjection >= 8.0.0",
+      "ReservacionesApi.Common >= 1.0.0",
       "ReservacionesApi.Domain >= 1.0.0"
     ]
   },
@@ -770,6 +786,9 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
+            "/home/core/Desktop/Project/ReservacionesAPI/src/ReservacionesApi.Common/ReservacionesApi.Common.csproj": {
+              "projectPath": "/home/core/Desktop/Project/ReservacionesAPI/src/ReservacionesApi.Common/ReservacionesApi.Common.csproj"
+            },
             "/home/core/Desktop/Project/ReservacionesAPI/src/ReservacionesApi.Domain/ReservacionesApi.Domain.csproj": {
               "projectPath": "/home/core/Desktop/Project/ReservacionesAPI/src/ReservacionesApi.Domain/ReservacionesApi.Domain.csproj"
             }
