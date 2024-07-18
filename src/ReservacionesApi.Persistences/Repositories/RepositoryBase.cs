@@ -18,7 +18,7 @@ public class RepositoryBase<T> : IReadRepository<T>
         _configurationProvider = configurationProvider;
     }
 
-    public async Task<List<TResult>> ListAsync<TResult>()
+    public async Task<IEnumerable<TResult>> ListAsync<TResult>()
     {
         var query = await DbContext.Set<T>().ProjectTo<TResult>(_configurationProvider).ToListAsync();
         return query;
@@ -65,7 +65,7 @@ public class RepositoryBase<T> : IReadRepository<T>
         throw new NotImplementedException();
     }
 
-    public Task<List<T>> ListAsync()
+    public Task<IEnumerable<T>> ListAsync()
     {
         throw new NotImplementedException();
     }
