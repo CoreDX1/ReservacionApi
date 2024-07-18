@@ -5,13 +5,13 @@ namespace ReservacionesApi.Persistences.UnitOfWork;
 
 public class UnitOfWork : IUnitOfWork
 {
-    public IUserRepository UserRepository { get; }
+    public IUserRepository User { get; }
     private readonly ReservacionDbContext dbContext;
 
     public UnitOfWork(IUserRepository userRepository, ReservacionDbContext dbContext)
     {
         this.dbContext = dbContext;
-        UserRepository = userRepository;
+        User = userRepository;
     }
 
     public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

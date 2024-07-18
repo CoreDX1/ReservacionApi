@@ -4,7 +4,7 @@ namespace ReservacionesApi.Application.Contracts.Persistence;
 
 public class Specification<T, TResult> : Specification<T>, ISpecification<T, TResult>
 {
-    public new virtual ISpecificationBuilder<T, TResult> Query { get; }
+    public new virtual ISpecificationBuilder<T, TResult>? Query { get; }
 }
 
 public class Specification<T> : ISpecification<T>

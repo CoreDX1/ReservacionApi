@@ -4,5 +4,5 @@ public interface IUnitOfWork : IDisposable
 {
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 
-    IUserRepository UserRepository { get; }
+    IUserRepository User { get; }
 }

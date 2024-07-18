@@ -15,5 +15,11 @@ public interface IReadRepository<T>
     Task<bool> AnyAsync();
 
     Task<List<T>> ListAsync();
+
+    /// <summary>
+    /// Regresa una lista DTO de <typeparamref name="TResult"/>
+    /// </summary>
+    /// <typeparam name="TResult"></typeparam>
+    /// <returns></returns>
     Task<List<TResult>> ListAsync<TResult>();
 }

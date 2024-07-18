@@ -1,24 +1,21 @@
 using ReservacionesApi.Application.Contracts.Persistence;
 using ReservacionesApi.Application.Interfaces;
 using ReservacionesApi.Domain.Common;
-using ReservacionesApi.Domain.Entities;
 
 namespace ReservacionesApi.Application.Features.Users;
 
 public class UserService : IUserService
 {
-    private readonly IReadRepository<User> UserRepository;
     private readonly IUnitOfWork UnitOfWork;
 
-    public UserService(IReadRepository<User> userRepository, IUnitOfWork unitOfWork)
+    public UserService(IUnitOfWork unitOfWork)
     {
-        UserRepository = userRepository;
         UnitOfWork = unitOfWork;
     }
 
     public async Task<ApiResult<IEnumerable<UserResponseDto>>> UserListAsync()
     {
-        var users = await UserRepository.ListAsync<UserResponseDto>();
+        var users = await UnitOfWork.User.ListAsync<UserResponseDto>();
 
         if (users.Count == 0)
         {
