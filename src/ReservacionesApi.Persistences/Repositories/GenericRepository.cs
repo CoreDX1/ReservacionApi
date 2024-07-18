@@ -1,4 +1,5 @@
 using AutoMapper;
+using AutoMapper.Configuration;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using ReservacionesApi.Application.Contracts.Persistence;
@@ -94,25 +95,28 @@ public class GenericRepository<T> : IGenericRepositoryAsync<T>, IReadRepository<
 
     public async Task<int> CountAsync()
     {
-        var query = await DbContext.Set<T>().ToListAsync();
+        IQueryable<T> query = DbContext.Set<T>().AsNoTracking();
 
-        return query.Count;
+        return await query.CountAsync();
     }
 
-    public Task<bool> AnyAsync()
+    public async Task<bool> AnyAsync()
     {
-        throw new NotImplementedException();
-    }
-
-    public async Task<List<T>> ListAsync()
-    {
-        return await DbContext.Set<T>().ToListAsync();
-    }
-
-    public async Task<List<TResult>> ListAsync<TResult>()
-    {
-        List<TResult> query = await DbContext.Set<T>().ProjectTo<TResult>(_configurationProvider).ToListAsync();
+        var query = await DbContext.Set<T>().AnyAsync();
         return query;
+    }
+
+    public async Task<IEnumerable<T>> ListAsync()
+    {
+        IQueryable<T> query = DbContext.Set<T>().AsNoTracking();
+        return await query.ToListAsync();
+    }
+
+    // IEnumerable por que solamente quiero leer el contenido
+    public async Task<IEnumerable<TResult>> ListAsync<TResult>()
+    {
+        IEnumerable<T> entity = await DbContext.Set<T>().AsNoTracking().ToListAsync();
+        return mapper.Map<IEnumerable<TResult>>(entity);
     }
 
     public async Task<TResult> FindAsync<TResult>(int id)

@@ -11,7 +11,7 @@ public partial class ReservacionDbContext : DbContext
         : base(options)
     {
         // TOREVIEW: Investigar que hace el ChangeTracker
-        ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+        // ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
     }
 
     public DbSet<Amenity> Amenities { get; set; }
