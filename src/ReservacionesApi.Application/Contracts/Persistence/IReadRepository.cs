@@ -3,23 +3,17 @@ namespace ReservacionesApi.Application.Contracts.Persistence;
 public interface IReadRepository<T>
     where T : class
 {
-    Task<T?> FindAsync<TId>(TId id, CancellationToken cancellationToken = default)
+    Task<T?> FindAsync<TId>(TId id)
         where TId : notnull;
 
-    Task<T?> FirstOrDefaultAsync(ISpecification<T> specification, CancellationToken cancellationToken = default);
+    Task<T?> FirstOrDefaultAsync();
 
-    Task<T?> SingleOrDefaultAsync(ISpecification<T> specification, CancellationToken cancellationToken = default);
-    Task<TResult?> SingleOrDefaultAsync<TResult>(ISpecification<T, TResult> specification, CancellationToken cancellationToken = default);
-    Task<List<T>> ListAsync(CancellationToken cancellationToken = default);
-    Task<List<T>> ListAsync(ISpecification<T> specification, CancellationToken cancellationToken = default);
-    Task<List<TResult>> ListAsync<TResult>(ISpecification<T, TResult> specification, CancellationToken cancellationToken = default);
-    Task<int> CountAsync(CancellationToken cancellationToken = default);
-    Task<int> CountAsync(ISpecification<T> specification, CancellationToken cancellationToken = default);
-    Task<bool> AnyAsync(CancellationToken cancellationToken = default);
-    Task<bool> AnyAsync(ISpecification<T> specification, CancellationToken cancellationToken = default);
+    Task<T?> SingleOrDefaultAsync();
+    Task<TResult?> SingleOrDefaultAsync<TResult>();
 
+    Task<int> CountAsync();
+    Task<bool> AnyAsync();
+
+    Task<List<T>> ListAsync();
     Task<List<TResult>> ListAsync<TResult>();
-
-    Task<TResult?> ProjectToFirstOrDefaultAsync<TResult>(ISpecification<T> specification, CancellationToken cancellationToken);
-    Task<List<TResult>> ProjectToListAsync<TResult>(ISpecification<T> specification, CancellationToken cancellationToken);
 }
