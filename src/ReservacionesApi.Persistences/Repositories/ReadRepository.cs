@@ -8,6 +8,6 @@ namespace ReservacionesApi.Persistences.Repositories;
 public class ReadRepository<T> : RepositoryBase<T>, IReadRepository<T>
     where T : class
 {
-    public ReadRepository(ReservacionDbContext dbContext, IMapper mapper)
-        : base(dbContext, mapper) { }
+    public ReadRepository(ReservacionDbContext dbContext, IConfigurationProvider configurationProvider)
+        : base(dbContext, configurationProvider) { }
 }

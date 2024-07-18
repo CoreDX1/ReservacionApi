@@ -10,16 +10,11 @@ public class RepositoryBase<T> : IReadRepository<T>
     where T : class
 {
     protected ReservacionDbContext DbContext { get; set; }
-    protected readonly IMapper _mapper;
     protected readonly IConfigurationProvider _configurationProvider;
 
-    public RepositoryBase(ReservacionDbContext dbContext, IMapper mapper)
-        : this(dbContext, mapper, null!) { }
-
-    public RepositoryBase(ReservacionDbContext dbContext, IMapper mapper, IConfigurationProvider configurationProvider)
+    public RepositoryBase(ReservacionDbContext dbContext, IConfigurationProvider configurationProvider)
     {
         DbContext = dbContext;
-        _mapper = mapper;
         _configurationProvider = configurationProvider;
     }
 

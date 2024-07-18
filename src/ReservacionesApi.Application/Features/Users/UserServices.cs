@@ -10,14 +10,9 @@ public class UserService : IUserService
 {
     private readonly IReadRepository<User> UserRepository;
 
-    // private readonly IUnitOfWork UnitOfWork;
-    // private readonly IMapper Mapper;
-
-    public UserService(IReadRepository<User> userRepository, IUnitOfWork unitOfWork, IMapper mapper)
+    public UserService(IReadRepository<User> userRepository)
     {
         UserRepository = userRepository;
-        // UnitOfWork = unitOfWork;
-        // Mapper = mapper;
     }
 
     public async Task<ApiResult<IEnumerable<UserResponseDto>>> UserListAsync()
