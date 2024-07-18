@@ -18,6 +18,8 @@ public interface IReadRepository<T>
     Task<bool> AnyAsync(CancellationToken cancellationToken = default);
     Task<bool> AnyAsync(ISpecification<T> specification, CancellationToken cancellationToken = default);
 
+    Task<List<TResult>> ListAsync<TResult>();
+
     Task<TResult?> ProjectToFirstOrDefaultAsync<TResult>(ISpecification<T> specification, CancellationToken cancellationToken);
     Task<List<TResult>> ProjectToListAsync<TResult>(ISpecification<T> specification, CancellationToken cancellationToken);
 }
