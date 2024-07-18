@@ -18,7 +18,7 @@ public class UserService : IUserService
     {
         var users = await UnitOfWork.User.ListAsync<UserResponseDto>();
 
-        if (users.Count == 0)
+        if (!users.Any())
             return ApiResult<IEnumerable<UserResponseDto>>.Error("Users not found.", 404);
 
         return ApiResult<IEnumerable<UserResponseDto>>.Success(users, "Users retrieved successfully.", 200);
@@ -32,5 +32,11 @@ public class UserService : IUserService
             return ApiResult<UserResponseDto>.Error("User not found.", 404);
 
         return ApiResult<UserResponseDto>.Success(user, "User retrieved successfully.", 200);
+    }
+
+    public async Task<ApiResult<int>> CountAsync()
+    {
+        var count = await UnitOfWork.User.CountAsync();
+        return ApiResult<int>.Success(count, "Count retrieved successfully.", 200);
     }
 }
