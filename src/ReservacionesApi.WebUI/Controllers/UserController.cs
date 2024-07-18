@@ -27,4 +27,11 @@ public class UserController : ControllerBase
         var result = await _userService.GetUserByIdAsync(id);
         return Ok(result);
     }
+
+    [HttpGet("count")] // GET /api/user/count
+    public async Task<IActionResult> Count()
+    {
+        var result = await _userService.CountAsync();
+        return Ok(result);
+    }
 }
