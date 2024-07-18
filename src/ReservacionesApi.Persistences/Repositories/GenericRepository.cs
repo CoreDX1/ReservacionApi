@@ -9,12 +9,10 @@ public class GenericRepository<T> : IGenericRepositoryAsync<T>
 {
     // TOREVIEW: Investigar que hace "internal"
     internal ReservacionDbContext dbContext;
-    internal DbSet<T> dbSet;
 
     public GenericRepository(ReservacionDbContext dbContext)
     {
         this.dbContext = dbContext;
-        dbSet = this.dbContext.Set<T>();
     }
 
     public Task DeleteRangeAsync(IEnumerable<T> entities)
@@ -24,12 +22,12 @@ public class GenericRepository<T> : IGenericRepositoryAsync<T>
 
     public async Task<IReadOnlyList<T>> GetAllAsync()
     {
-        return await dbSet.ToListAsync();
+        return await dbContext.Set<T>().ToListAsync();
     }
 
     public async Task<T> AddAsync(T entity)
     {
-        await dbSet.AddAsync(entity);
+        await dbContext.Set<T>().AddAsync(entity);
         await dbContext.SaveChangesAsync();
 
         return entity;
@@ -37,7 +35,13 @@ public class GenericRepository<T> : IGenericRepositoryAsync<T>
 
     public async Task<T> GetByIdAsync(int id)
     {
-        return await dbSet.FindAsync(id);
+        var entity = await dbContext.Set<T>().FindAsync(id);
+
+        if (entity == null)
+        {
+            return null!;
+        }
+        return entity;
     }
 
     public Task UpdateAsync(T entity)
@@ -49,7 +53,7 @@ public class GenericRepository<T> : IGenericRepositoryAsync<T>
 
     public async Task DeleteAsync(T entity)
     {
-        dbSet.Remove(entity);
+        dbContext.Set<T>().Remove(entity);
 
         await dbContext.SaveChangesAsync();
     }

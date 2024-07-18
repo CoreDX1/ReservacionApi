@@ -1,7 +1,10 @@
+using System.Reflection;
+using Ardalis.Specification;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ReservacionesApi.Application.Contracts.Persistence;
+using ReservacionesApi.Application.Mapping;
 using ReservacionesApi.Persistences.Migrations;
 using ReservacionesApi.Persistences.Repositories;
 using ReservacionesApi.Persistences.UnitOfWork;
@@ -16,8 +19,11 @@ public static class PersistenceServiceRegistration
         {
             options.UseSqlServer(configuration.GetConnectionString("ReservacionesApi"), b => b.MigrationsAssembly(typeof(ReservacionDbContext).Assembly.FullName));
         });
+        services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
         services.AddScoped<IUserRepository, UserRespository>();
+        services.AddScoped(typeof(IReadRepository<>), typeof(ReadRepository<>));
+        services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         return services;

@@ -7,21 +7,21 @@ namespace ReservacionesApi.Application.Features.Users;
 
 public class UserService : IUserService
 {
-    private readonly IUnitOfWork unitOfWork;
+    private readonly IReadRepository<User> userRepository;
 
-    public UserService(IUnitOfWork unitOfWork)
+    public UserService(IReadRepository<User> userRepository)
     {
-        this.unitOfWork = unitOfWork;
+        this.userRepository = userRepository;
     }
 
-    public async Task<ApiResult<IEnumerable<User>>> UserListAsync()
+    public async Task<ApiResult<IEnumerable<UserResponseDto>>> UserListAsync()
     {
-        var users = await unitOfWork.UserRepository.GetAllAsync();
-        if (!users.Any())
+        var users = await userRepository.ProjectToListAsync<UserResponseDto>(cancellationToken: default, specification: null!);
+        if (users.Count == 0)
         {
-            return ApiResult<IEnumerable<User>>.Error("Users not found.", 404);
+            return ApiResult<IEnumerable<UserResponseDto>>.Error("Users not found.", 404);
         }
 
-        return ApiResult<IEnumerable<User>>.Success(users, "Users retrieved successfully.", 200);
+        return ApiResult<IEnumerable<UserResponseDto>>.Success(users, "Users retrieved successfully.", 200);
     }
 }

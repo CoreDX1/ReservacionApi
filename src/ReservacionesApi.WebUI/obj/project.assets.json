@@ -1753,6 +1753,7 @@
         "dependencies": {
           "Ardalis.Specification": "8.0.0",
           "Ardalis.Specification.EntityFrameworkCore": "8.0.0",
+          "AutoMapper": "13.0.1",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.7",
           "ReservacionesApi.Application": "1.0.0",
           "ReservacionesApi.Domain": "1.0.0"

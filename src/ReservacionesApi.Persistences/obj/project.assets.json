@@ -4343,6 +4343,7 @@
     "net8.0": [
       "Ardalis.Specification >= 8.0.0",
       "Ardalis.Specification.EntityFrameworkCore >= 8.0.0",
+      "AutoMapper >= 13.0.1",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.7",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.7",
       "ReservacionesApi.Application >= 1.0.0",
@@ -4405,6 +4406,10 @@
           "Ardalis.Specification.EntityFrameworkCore": {
             "target": "Package",
             "version": "[8.0.0, )"
+          },
+          "AutoMapper": {
+            "target": "Package",
+            "version": "[13.0.1, )"
           },
           "Microsoft.EntityFrameworkCore.Design": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
