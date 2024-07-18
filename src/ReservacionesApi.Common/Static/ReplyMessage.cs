@@ -31,7 +31,7 @@ public class ReplyMessage
     {
         public const string ValidateEmail = "El email ya existe";
         public const string ValidatePassword = "Las contraseñas no coinciden";
-        public const string Validate = "Errores de validación";
+        public const string ValidateError = "Errores de validación";
     }
 
     public static class Info

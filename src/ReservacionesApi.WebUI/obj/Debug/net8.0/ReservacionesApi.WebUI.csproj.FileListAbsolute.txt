@@ -158,3 +158,5 @@
 /home/core/Desktop/Project/ReservacionesAPI/src/ReservacionesApi.WebUI/bin/Debug/net8.0/MediatR.Contracts.dll
 /home/core/Desktop/Project/ReservacionesAPI/src/ReservacionesApi.WebUI/bin/Debug/net8.0/Ardalis.Specification.dll
 /home/core/Desktop/Project/ReservacionesAPI/src/ReservacionesApi.WebUI/bin/Debug/net8.0/Ardalis.Specification.EntityFrameworkCore.dll
+/home/core/Desktop/Project/ReservacionesAPI/src/ReservacionesApi.WebUI/bin/Debug/net8.0/ReservacionesApi.Common.dll
+/home/core/Desktop/Project/ReservacionesAPI/src/ReservacionesApi.WebUI/bin/Debug/net8.0/ReservacionesApi.Common.pdb
