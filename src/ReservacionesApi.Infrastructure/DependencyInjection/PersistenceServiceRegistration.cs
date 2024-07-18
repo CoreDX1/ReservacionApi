@@ -19,7 +19,8 @@ public static class PersistenceServiceRegistration
         {
             options.UseSqlServer(configuration.GetConnectionString("ReservacionesApi"), b => b.MigrationsAssembly(typeof(ReservacionDbContext).Assembly.FullName));
         });
-        services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+        // services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
         services.AddScoped<IUserRepository, UserRespository>();
         services.AddScoped(typeof(IReadRepository<>), typeof(ReadRepository<>));
