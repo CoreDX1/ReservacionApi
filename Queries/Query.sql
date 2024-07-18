@@ -135,5 +135,29 @@ CREATE TABLE PasswordResets (
 INSERT INTO Users (Email, PasswordHash,UserName, FullName, EmailVerified)
 VALUES ('W4wUq@example.com', 'password', 'admin', 'Admin User', 1);
 
+INSERT INTO Users (Email, PasswordHash, UserName, FullName, EmailVerified)
+VALUES 
+('jdoe@example.com', 'password1', 'jdoe', 'John Doe', 1),
+('asmith@example.com', 'password2', 'asmith', 'Alice Smith', 1),
+('bwhite@example.com', 'password3', 'bwhite', 'Bob White', 1),
+('cmiller@example.com', 'password4', 'cmiller', 'Chris Miller', 1),
+('djohnson@example.com', 'password5', 'djohnson', 'Diane Johnson', 1),
+('ewilliams@example.com', 'password6', 'ewilliams', 'Evan Williams', 1),
+('ffox@example.com', 'password7', 'ffox', 'Fiona Fox', 1),
+('ggreen@example.com', 'password8', 'ggreen', 'George Green', 1),
+('hclark@example.com', 'password9', 'hclark', 'Hannah Clark', 1),
+('ijones@example.com', 'password10', 'ijones', 'Ian Jones', 1),
+('klee@example.com', 'password11', 'klee', 'Karen Lee', 1),
+('lmorgan@example.com', 'password12', 'lmorgan', 'Liam Morgan', 1),
+('mreyes@example.com', 'password13', 'mreyes', 'Maria Reyes', 1),
+('nmartin@example.com', 'password14', 'nmartin', 'Nina Martin', 1),
+('operez@example.com', 'password15', 'operez', 'Oscar Perez', 1),
+('prussell@example.com', 'password16', 'prussell', 'Paul Russell', 1),
+('qsanders@example.com', 'password17', 'qsanders', 'Quincy Sanders', 1),
+('rturner@example.com', 'password18', 'rturner', 'Rachel Turner', 1),
+('swalker@example.com', 'password19', 'swalker', 'Sam Walker', 1),
+('tking@example.com', 'password20', 'tking', 'Tina King', 1);
+
+
 
 SELECT * FROM Users;
