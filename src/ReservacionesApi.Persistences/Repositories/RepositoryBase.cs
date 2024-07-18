@@ -24,62 +24,6 @@ public class RepositoryBase<T> : IReadRepository<T>
         return query;
     }
 
-    public Task<bool> AnyAsync(CancellationToken cancellationToken = default)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<bool> AnyAsync(ISpecification<T> specification, CancellationToken cancellationToken = default)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<int> CountAsync(CancellationToken cancellationToken = default)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<int> CountAsync(ISpecification<T> specification, CancellationToken cancellationToken = default)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<T?> FindAsync<TId>(TId id, CancellationToken cancellationToken = default)
-        where TId : notnull
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<T?> FirstOrDefaultAsync(ISpecification<T> specification, CancellationToken cancellationToken = default)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<List<T>> ListAsync(CancellationToken cancellationToken = default)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<List<T>> ListAsync(ISpecification<T> specification, CancellationToken cancellationToken = default)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<List<TResult>> ListAsync<TResult>(ISpecification<T, TResult> specification, CancellationToken cancellationToken = default)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<TResult?> ProjectToFirstOrDefaultAsync<TResult>(ISpecification<T> specification, CancellationToken cancellationToken)
-    {
-        throw new NotImplementedException();
-    }
-
-    public async Task<List<TResult>> ProjectToListAsync<TResult>(ISpecification<T> specification, CancellationToken cancellationToken)
-    {
-        return await DbContext.Set<T>().ProjectTo<TResult>(_configurationProvider).ToListAsync(cancellationToken);
-    }
-
     protected virtual IQueryable<T> ApplySpecification(ISpecification<T>? specification, bool evaluateCriteriaOnly = false)
     {
         var query = DbContext.Set<T>().AsQueryable();
@@ -90,12 +34,38 @@ public class RepositoryBase<T> : IReadRepository<T>
         return query;
     }
 
-    public Task<T?> SingleOrDefaultAsync(ISpecification<T> specification, CancellationToken cancellationToken = default)
+    public async Task<T?> FindAsync<TId>(TId id)
+        where TId : notnull
+    {
+        return await DbContext.Set<T>().FindAsync(id);
+    }
+
+    public Task<T?> FirstOrDefaultAsync()
     {
         throw new NotImplementedException();
     }
 
-    public Task<TResult?> SingleOrDefaultAsync<TResult>(ISpecification<T, TResult> specification, CancellationToken cancellationToken = default)
+    public Task<T?> SingleOrDefaultAsync()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<TResult?> SingleOrDefaultAsync<TResult>()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<int> CountAsync()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<bool> AnyAsync()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<List<T>> ListAsync()
     {
         throw new NotImplementedException();
     }
