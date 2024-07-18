@@ -1,4 +1,5 @@
 using ReservacionesApi.Application.Contracts.Persistence;
+using ReservacionesApi.Application.Dtos;
 using ReservacionesApi.Application.Interfaces;
 using ReservacionesApi.Domain.Common;
 
@@ -18,10 +19,18 @@ public class UserService : IUserService
         var users = await UnitOfWork.User.ListAsync<UserResponseDto>();
 
         if (users.Count == 0)
-        {
             return ApiResult<IEnumerable<UserResponseDto>>.Error("Users not found.", 404);
-        }
 
         return ApiResult<IEnumerable<UserResponseDto>>.Success(users, "Users retrieved successfully.", 200);
+    }
+
+    public async Task<ApiResult<UserResponseDto>> GetUserByIdAsync(int id)
+    {
+        var user = await UnitOfWork.User.FindAsync<UserResponseDto>(id);
+
+        if (user == null)
+            return ApiResult<UserResponseDto>.Error("User not found.", 404);
+
+        return ApiResult<UserResponseDto>.Success(user, "User retrieved successfully.", 200);
     }
 }

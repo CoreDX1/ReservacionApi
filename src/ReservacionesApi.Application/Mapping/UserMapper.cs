@@ -1,5 +1,5 @@
 using AutoMapper;
-using ReservacionesApi.Domain.Common;
+using ReservacionesApi.Application.Dtos;
 using ReservacionesApi.Domain.Entities;
 
 namespace ReservacionesApi.Application.Mapping;

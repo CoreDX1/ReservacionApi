@@ -11,13 +11,15 @@ public class GenericRepository<T> : IGenericRepositoryAsync<T>, IReadRepository<
 {
     // TOREVIEW: Investigar que hace "internal"
     internal ReservacionDbContext DbContext;
+    protected readonly IMapper mapper;
 
     protected readonly IConfigurationProvider _configurationProvider;
 
-    public GenericRepository(ReservacionDbContext dbContext, IConfigurationProvider configurationProvider)
+    public GenericRepository(ReservacionDbContext dbContext, IConfigurationProvider configurationProvider, IMapper mapper)
     {
         DbContext = dbContext;
         _configurationProvider = configurationProvider;
+        this.mapper = mapper;
     }
 
     public Task DeleteRangeAsync(IEnumerable<T> entities)
@@ -109,7 +111,13 @@ public class GenericRepository<T> : IGenericRepositoryAsync<T>, IReadRepository<
 
     public async Task<List<TResult>> ListAsync<TResult>()
     {
-        var query = await DbContext.Set<T>().ProjectTo<TResult>(_configurationProvider).ToListAsync();
+        List<TResult> query = await DbContext.Set<T>().ProjectTo<TResult>(_configurationProvider).ToListAsync();
         return query;
+    }
+
+    public async Task<TResult> FindAsync<TResult>(int id)
+    {
+        T? entity = await DbContext.Set<T>().FindAsync(id);
+        return mapper.Map<TResult>(entity);
     }
 }

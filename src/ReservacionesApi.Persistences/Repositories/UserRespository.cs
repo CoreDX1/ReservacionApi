@@ -7,6 +7,6 @@ namespace ReservacionesApi.Persistences.Repositories;
 
 public class UserRespository : GenericRepository<User>, IUserRepository
 {
-    public UserRespository(ReservacionDbContext dbContext, IConfigurationProvider configurationProvider)
-        : base(dbContext, configurationProvider) { }
+    public UserRespository(ReservacionDbContext dbContext, IConfigurationProvider configurationProvider, IMapper mapper)
+        : base(dbContext, configurationProvider, mapper) { }
 }

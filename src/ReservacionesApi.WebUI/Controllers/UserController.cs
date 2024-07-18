@@ -14,10 +14,17 @@ public class UserController : ControllerBase
         _userService = userService;
     }
 
-    [HttpGet]
-    public async Task<IResult> GetUserList()
+    [HttpGet("list")] // GET /api/user/list
+    public async Task<IActionResult> GetUserList()
     {
         var result = await _userService.UserListAsync();
-        return Results.Ok(result);
+        return Ok(result);
+    }
+
+    [HttpGet("{id}")] // GET /api/user/2
+    public async Task<IActionResult> GetUserById(int id)
+    {
+        var result = await _userService.GetUserByIdAsync(id);
+        return Ok(result);
     }
 }

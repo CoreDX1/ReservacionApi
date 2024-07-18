@@ -6,6 +6,8 @@ public interface IReadRepository<T>
     Task<T?> FindAsync<TId>(TId id)
         where TId : notnull;
 
+    Task<TResult> FindAsync<TResult>(int id);
+
     Task<T?> FirstOrDefaultAsync();
 
     Task<T?> SingleOrDefaultAsync();

@@ -69,4 +69,9 @@ public class RepositoryBase<T> : IReadRepository<T>
     {
         throw new NotImplementedException();
     }
+
+    public Task<TResult> FindAsync<TResult>(int id)
+    {
+        throw new NotImplementedException();
+    }
 }
