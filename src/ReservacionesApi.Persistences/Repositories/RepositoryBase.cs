@@ -18,7 +18,7 @@ public class RepositoryBase<T> : IReadRepository<T>
         _configurationProvider = configurationProvider;
     }
 
-    public async Task<IEnumerable<TResult>> ListAsync<TResult>()
+    public async Task<IReadOnlyList<TResult>> ListAsync<TResult>()
     {
         var query = await DbContext.Set<T>().ProjectTo<TResult>(_configurationProvider).ToListAsync();
         return query;
