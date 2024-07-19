@@ -11,11 +11,9 @@ public static class InjectionExtensions
 {
     public static IServiceCollection AddApplicationLayer(this IServiceCollection services)
     {
+        #region Services
         services.AddScoped<IUserService, UserService>();
-        // Mapear los objetos de dominio a DTO
-        // Agregar validadores para la capa de aplicación
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-
         services.AddAutoMapper(cfg =>
         {
             cfg.AddProfile(new UserMapper());
@@ -24,6 +22,8 @@ public static class InjectionExtensions
         // TOREVIEW: Patron de Mediador
         // Agregar mediatr para la capa de aplicación
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+
+        #endregion
 
         return services;
     }
