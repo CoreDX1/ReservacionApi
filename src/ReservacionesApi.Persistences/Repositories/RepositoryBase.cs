@@ -65,7 +65,7 @@ public class RepositoryBase<T> : IReadRepository<T>
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<T>> ListAsync()
+    public Task<IReadOnlyList<T>> ListAsync()
     {
         throw new NotImplementedException();
     }
