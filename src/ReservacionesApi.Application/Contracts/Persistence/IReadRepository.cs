@@ -16,12 +16,12 @@ public interface IReadRepository<T>
     Task<int> CountAsync();
     Task<bool> AnyAsync();
 
-    Task<IEnumerable<T>> ListAsync();
+    Task<IReadOnlyList<T>> ListAsync();
 
     /// <summary>
     /// Regresa una lista DTO de <typeparamref name="TResult"/>
     /// </summary>
     /// <typeparam name="TResult"></typeparam>
     /// <returns></returns>
-    Task<IEnumerable<TResult>> ListAsync<TResult>();
+    Task<IReadOnlyList<TResult>> ListAsync<TResult>();
 }
