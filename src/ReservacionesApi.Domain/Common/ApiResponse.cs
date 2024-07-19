@@ -1,21 +1,83 @@
 using System.Net;
+using System.Text.Json.Serialization;
+using ReservacionesApi.Common.Static;
 
 namespace ReservacionesApi.Domain.Common;
 
 public class ApiResult<T>
 {
-    public T? Data { get; set; }
+    [JsonInclude]
+    internal T? Value { get; set; }
 
-    public ResponseMetadata? Metadata { get; set; }
+    [JsonInclude]
+    internal ResponseMetadata Metadata { get; set; } = new ResponseMetadata();
 
-    public static ApiResult<T> Success(T data, string message, HttpStatusCode code)
+    [JsonInclude]
+    public IEnumerable<string> Errors { get; protected set; } = [];
+
+    protected ApiResult(T value)
     {
-        return new ApiResult<T> { Data = data, Metadata = new ResponseMetadata(message, code) };
+        Value = value;
     }
 
-    public static ApiResult<T> Error(string message, HttpStatusCode code)
+    protected ApiResult(HttpStatusCode statusCode)
     {
-        return new ApiResult<T> { Metadata = new ResponseMetadata(message, code) };
+        Metadata = new ResponseMetadata(statusCode);
+    }
+
+    protected ApiResult(HttpStatusCode statusCode, string message)
+    {
+        Metadata = new ResponseMetadata(message, statusCode);
+    }
+
+    // protected internal ApiResult(T value, string successMessage)
+    //     : this(value)
+    // {
+    //     SuccessMessage = successMessage;
+    // }
+
+    /// <summary>
+    /// Representa una operación exitosa y acepta valores como resultado de la operación
+    /// </summary>
+    /// <param name="value">Establece la propiedad Value</param>
+    /// <returns>Un ApiResult</returns>
+    public static ApiResult<T> Succes(T value)
+    {
+        return new ApiResult<T>(HttpStatusCode.OK, ReplyMessage.Success.Query) { Value = value };
+    }
+
+    /// <summary>
+    /// Represante una situación en donde un servicio no fue encontrado
+    /// </summary>
+    /// <returns>Un ApiResult</returns>
+    public static ApiResult<T> NotFound()
+    {
+        return new ApiResult<T>(HttpStatusCode.NotFound, ReplyMessage.Error.QueryEmpty) { };
+    }
+
+    /// <summary>
+    /// Representa un operacion exitosa que crea un nuevo valor
+    /// </summary>
+    /// <param name="value">El tipo de valor que se crea</param>
+    /// <returns></returns>
+    public static ApiResult<T> Created(T value)
+    {
+        return new ApiResult<T>(HttpStatusCode.OK, ReplyMessage.Success.Save) { Value = value };
+    }
+
+    public static ApiResult<T> Created()
+    {
+        return new ApiResult<T>(HttpStatusCode.OK, ReplyMessage.Success.Save);
+    }
+
+    public static ApiResult<T> Error(string errorMessage)
+    {
+        return new ApiResult<T>(HttpStatusCode.BadRequest, errorMessage) { Errors = [errorMessage] };
+    }
+
+    public static ApiResult<T> NoContent()
+    {
+        return new ApiResult<T>(HttpStatusCode.NoContent);
     }
 }
 
@@ -23,11 +85,23 @@ public class ResponseMetadata
 {
     public HttpStatusCode StatusCode { get; set; }
 
-    public string? Message { get; set; }
+    public string Message { get; set; } = string.Empty;
 
     public ResponseMetadata(string message, HttpStatusCode code)
     {
         Message = message;
         StatusCode = code;
     }
+
+    public ResponseMetadata(string message)
+    {
+        Message = message;
+    }
+
+    public ResponseMetadata(HttpStatusCode code)
+    {
+        StatusCode = code;
+    }
+
+    public ResponseMetadata() { }
 }

@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {}
+    "net8.0": {
+      "ReservacionesApi.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/ReservacionesApi.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ReservacionesApi.Common.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "ReservacionesApi.Common/1.0.0": {
+      "type": "project",
+      "path": "../ReservacionesApi.Common/ReservacionesApi.Common.csproj",
+      "msbuildProject": "../ReservacionesApi.Common/ReservacionesApi.Common.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net8.0": []
+    "net8.0": [
+      "ReservacionesApi.Common >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "/home/core/.nuget/packages/": {}
@@ -31,7 +50,11 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/home/core/Desktop/Project/ReservacionesAPI/src/ReservacionesApi.Common/ReservacionesApi.Common.csproj": {
+              "projectPath": "/home/core/Desktop/Project/ReservacionesAPI/src/ReservacionesApi.Common/ReservacionesApi.Common.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

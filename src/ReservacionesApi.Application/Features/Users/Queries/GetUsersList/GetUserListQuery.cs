@@ -1,4 +1,3 @@
-using System.Net;
 using ReservacionesApi.Application.Contracts.Persistence;
 using ReservacionesApi.Domain.Common;
 using ReservacionesApi.Domain.Entities;
@@ -19,8 +18,8 @@ public class GetUserListQuery
         IEnumerable<User> users = await userRepository.GetAllAsync();
 
         if (!users.Any())
-            return ApiResult<IEnumerable<User>>.Error("Users not found.", HttpStatusCode.NotFound);
+            return ApiResult<IEnumerable<User>>.NotFound();
 
-        return ApiResult<IEnumerable<User>>.Success(users, "Users retrieved successfully.", HttpStatusCode.OK);
+        return ApiResult<IEnumerable<User>>.Succes(users);
     }
 }

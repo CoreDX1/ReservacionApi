@@ -174,7 +174,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "/home/core/Desktop/Project/ReservacionesAPI/src/ReservacionesApi.Common/ReservacionesApi.Common.csproj": {
+                "projectPath": "/home/core/Desktop/Project/ReservacionesAPI/src/ReservacionesApi.Common/ReservacionesApi.Common.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

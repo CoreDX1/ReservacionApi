@@ -13,4 +13,7 @@ public interface IGenericRepositoryAsync<T>
     Task UpdateAsync(T entity);
     Task DeleteAsync(T entity);
     Task DeleteRangeAsync(IEnumerable<T> entities);
+
+    // DTO parametros
+    Task<bool> AddAsync<Dto>(Dto entityDto);
 }

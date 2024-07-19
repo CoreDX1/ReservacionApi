@@ -60,6 +60,21 @@ public class GenericRepository<T> : IGenericRepositoryAsync<T>, IReadRepository<
         return entity;
     }
 
+    public async Task<bool> AddAsync<TDto>(TDto dto)
+    {
+        // Map the DTO to the entity
+        var entity = mapper.Map<T>(dto);
+
+        // Add the entity to the context
+        await DbContext.Set<T>().AddAsync(entity);
+
+        // Save changes to the database
+        var result = await DbContext.SaveChangesAsync();
+
+        // Return the added entity
+        return result > 0;
+    }
+
     public Task UpdateAsync(T entity)
     {
         DbContext.Entry(entity).State = EntityState.Modified;

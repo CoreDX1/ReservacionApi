@@ -9,5 +9,6 @@ public class UserMapper : Profile
     public UserMapper()
     {
         CreateMap<User, UserResponseDto>();
+        CreateMap<UserRequestDto, User>();
     }
 }

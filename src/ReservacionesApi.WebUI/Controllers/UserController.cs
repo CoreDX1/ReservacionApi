@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using ReservacionesApi.Application.Dtos;
 using ReservacionesApi.Application.Interfaces;
 
 namespace ReservacionesApi.WebUI.Controllers;
@@ -32,6 +33,13 @@ public class UserController : ControllerBase
     public async Task<IActionResult> Count()
     {
         var result = await _userService.CountAsync();
+        return Ok(result);
+    }
+
+    [HttpPost("add")] // POST /api/user/add
+    public async Task<IActionResult> AddUser(UserRequestDto userRequestDto)
+    {
+        var result = await _userService.AddUserAsync(userRequestDto);
         return Ok(result);
     }
 }

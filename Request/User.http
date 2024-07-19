@@ -5,7 +5,7 @@ GET {{Host}}/api/User/list HTTP/1.1
 Content-Type: application/json
 
 ### Recuperar un usuario
-GET {{Host}}/api/User/2 HTTP/1.1
+GET {{Host}}/api/User/1 HTTP/1.1
 Content-Type: application/json
 
 ### Cantidad de usuarios

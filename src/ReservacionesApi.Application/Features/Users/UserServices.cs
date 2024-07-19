@@ -1,9 +1,8 @@
-using System.Net;
 using ReservacionesApi.Application.Contracts.Persistence;
 using ReservacionesApi.Application.Dtos;
 using ReservacionesApi.Application.Interfaces;
-using ReservacionesApi.Common.Static;
 using ReservacionesApi.Domain.Common;
+using ReservacionesApi.Domain.Entities;
 
 namespace ReservacionesApi.Application.Features.Users;
 
@@ -21,9 +20,9 @@ public class UserService : IUserService
         var users = await UnitOfWork.User.ListAsync<UserResponseDto>();
 
         if (!users.Any())
-            return ApiResult<IReadOnlyList<UserResponseDto>>.Error(ReplyMessage.Error.QueryEmpty, HttpStatusCode.NotFound);
+            return ApiResult<IReadOnlyList<UserResponseDto>>.NotFound();
 
-        return ApiResult<IReadOnlyList<UserResponseDto>>.Success(users, ReplyMessage.Success.Query, HttpStatusCode.OK);
+        return ApiResult<IReadOnlyList<UserResponseDto>>.Succes(users);
     }
 
     public async Task<ApiResult<UserResponseDto>> GetUserByIdAsync(int id)
@@ -31,14 +30,26 @@ public class UserService : IUserService
         UserResponseDto user = await UnitOfWork.User.FindAsync<UserResponseDto>(id);
 
         if (user == null)
-            return ApiResult<UserResponseDto>.Error(ReplyMessage.Error.QueryEmpty, HttpStatusCode.NotFound);
+            return ApiResult<UserResponseDto>.NotFound();
 
-        return ApiResult<UserResponseDto>.Success(user, ReplyMessage.Success.Query, HttpStatusCode.OK);
+        return ApiResult<UserResponseDto>.Succes(user);
     }
 
     public async Task<ApiResult<int>> CountAsync()
     {
         int count = await UnitOfWork.User.CountAsync();
-        return ApiResult<int>.Success(count, ReplyMessage.Success.Query, HttpStatusCode.OK);
+        return ApiResult<int>.Succes(count);
+    }
+
+    public async Task<ApiResult<User>> AddUserAsync(UserRequestDto userRequestDto)
+    {
+        bool user = await UnitOfWork.User.AddAsync(userRequestDto);
+
+        if (!user)
+        {
+            return ApiResult<User>.NotFound();
+        }
+
+        return ApiResult<User>.Created();
     }
 }
