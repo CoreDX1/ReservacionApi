@@ -5,7 +5,7 @@ namespace ReservacionesApi.Application.Interfaces;
 
 public interface IUserService
 {
-    Task<ApiResult<IEnumerable<UserResponseDto>>> UserListAsync();
+    Task<ApiResult<IReadOnlyList<UserResponseDto>>> UserListAsync();
     Task<ApiResult<UserResponseDto>> GetUserByIdAsync(int id);
     Task<ApiResult<int>> CountAsync();
 }
