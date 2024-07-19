@@ -16,14 +16,14 @@ public class UserService : IUserService
         UnitOfWork = unitOfWork;
     }
 
-    public async Task<ApiResult<IEnumerable<UserResponseDto>>> UserListAsync()
+    public async Task<ApiResult<IReadOnlyList<UserResponseDto>>> UserListAsync()
     {
-        IEnumerable<UserResponseDto> users = await UnitOfWork.User.ListAsync<UserResponseDto>();
+        var users = await UnitOfWork.User.ListAsync<UserResponseDto>();
 
         if (!users.Any())
-            return ApiResult<IEnumerable<UserResponseDto>>.Error(ReplyMessage.Error.QueryEmpty, HttpStatusCode.NotFound);
+            return ApiResult<IReadOnlyList<UserResponseDto>>.Error(ReplyMessage.Error.QueryEmpty, HttpStatusCode.NotFound);
 
-        return ApiResult<IEnumerable<UserResponseDto>>.Success(users, ReplyMessage.Success.Query, HttpStatusCode.OK);
+        return ApiResult<IReadOnlyList<UserResponseDto>>.Success(users, ReplyMessage.Success.Query, HttpStatusCode.OK);
     }
 
     public async Task<ApiResult<UserResponseDto>> GetUserByIdAsync(int id)
