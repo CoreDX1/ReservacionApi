@@ -1,5 +1,4 @@
 using AutoMapper;
-using AutoMapper.Configuration;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using ReservacionesApi.Application.Contracts.Persistence;
@@ -23,22 +22,23 @@ public class GenericRepository<T> : IGenericRepositoryAsync<T>, IReadRepository<
         this.mapper = mapper;
     }
 
-    public Task DeleteRangeAsync(IEnumerable<T> entities)
+    public async Task<IReadOnlyList<T>> ListAsync()
     {
-        throw new NotImplementedException();
+        IQueryable<T> query = DbContext.Set<T>().AsNoTracking();
+        IReadOnlyList<T> list = await query.ToListAsync();
+        return list;
     }
 
-    public async Task<IReadOnlyList<T>> GetAllAsync()
+    // IEnumerable por que solamente quiero leer el contenido
+    public async Task<IReadOnlyList<TResult>> ListAsync<TResult>()
     {
-        return await DbContext.Set<T>().ToListAsync();
-    }
+        // Recuperamos todos los registros
+        List<T> entity = await DbContext.Set<T>().AsNoTracking().ToListAsync();
 
-    public async Task<T> AddAsync(T entity)
-    {
-        await DbContext.Set<T>().AddAsync(entity);
-        await DbContext.SaveChangesAsync();
+        // Proyectamos los registros a DTO en solo lectura
+        IReadOnlyList<TResult> result = mapper.Map<IReadOnlyList<TResult>>(entity);
 
-        return entity;
+        return result;
     }
 
     public async Task<T> GetByIdAsync(int id)
@@ -52,11 +52,29 @@ public class GenericRepository<T> : IGenericRepositoryAsync<T>, IReadRepository<
         return entity;
     }
 
+    public async Task<T> AddAsync(T entity)
+    {
+        await DbContext.Set<T>().AddAsync(entity);
+        await DbContext.SaveChangesAsync();
+
+        return entity;
+    }
+
     public Task UpdateAsync(T entity)
     {
         DbContext.Entry(entity).State = EntityState.Modified;
 
         return DbContext.SaveChangesAsync();
+    }
+
+    public Task DeleteRangeAsync(IEnumerable<T> entities)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task<IReadOnlyList<T>> GetAllAsync()
+    {
+        return await DbContext.Set<T>().ToListAsync();
     }
 
     public async Task DeleteAsync(T entity)
@@ -104,19 +122,6 @@ public class GenericRepository<T> : IGenericRepositoryAsync<T>, IReadRepository<
     {
         var query = await DbContext.Set<T>().AnyAsync();
         return query;
-    }
-
-    public async Task<IEnumerable<T>> ListAsync()
-    {
-        IQueryable<T> query = DbContext.Set<T>().AsNoTracking();
-        return await query.ToListAsync();
-    }
-
-    // IEnumerable por que solamente quiero leer el contenido
-    public async Task<IEnumerable<TResult>> ListAsync<TResult>()
-    {
-        IEnumerable<T> entity = await DbContext.Set<T>().AsNoTracking().ToListAsync();
-        return mapper.Map<IEnumerable<TResult>>(entity);
     }
 
     public async Task<TResult> FindAsync<TResult>(int id)
