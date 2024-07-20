@@ -47,7 +47,6 @@ public class UserService : IUserService
 
     public async Task<ApiResult<User>> AddUserAsync(UserRequestDto userRequestDto)
     {
-        bool user = await UnitOfWork.User.AddAsync(userRequestDto);
         var userValidate = await _validator.ValidateAsync(userRequestDto);
 
         var errorValidate = new ValidationExceptionDto(userValidate.Errors);
@@ -56,6 +55,8 @@ public class UserService : IUserService
         {
             return ApiResult<User>.Validate(errorValidate.Errors);
         }
+
+        bool user = await UnitOfWork.User.AddAsync(userRequestDto);
 
         if (!user)
         {
