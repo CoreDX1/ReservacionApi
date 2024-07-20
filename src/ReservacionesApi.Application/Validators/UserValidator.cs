@@ -1,12 +1,17 @@
 using FluentValidation;
+using ReservacionesApi.Application.Contracts.Persistence;
 using ReservacionesApi.Application.Dtos;
 
 namespace ReservacionesApi.Application.Validators;
 
 public class UserValidator : AbstractValidator<UserRequestDto>
 {
-    public UserValidator()
+    private readonly IUserRepository _userRepository;
+
+    public UserValidator(IUserRepository userRepository)
     {
+        _userRepository = userRepository;
+
         RuleFor(x => x.UserName)
             .NotEmpty()
             .WithMessage("El nombre de usuario es requerido")
@@ -14,6 +19,8 @@ public class UserValidator : AbstractValidator<UserRequestDto>
             .WithMessage("El nombre de usuario no puede ser 'admin'");
 
         RuleFor(x => x.Email)
+            .Must(x => IsUniqueEmail(x))
+            .WithMessage("El corre electronico ya existe")
             .EmailAddress()
             .WithMessage("El correo electronico es requerido")
             .NotEmpty()
@@ -36,5 +43,10 @@ public class UserValidator : AbstractValidator<UserRequestDto>
             .WithMessage("El nombre completo es requerido")
             .NotEmpty()
             .WithMessage("El nombre completo es requerido");
+    }
+
+    public bool IsUniqueEmail(string email)
+    {
+        return !_userRepository.IsUniqueEmail(email);
     }
 }

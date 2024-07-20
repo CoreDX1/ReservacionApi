@@ -15,7 +15,11 @@ public class GenericRepository<T> : IGenericRepositoryAsync<T>, IReadRepository<
 
     protected readonly IConfigurationProvider _configurationProvider;
 
-    public GenericRepository(ReservacionDbContext dbContext, IConfigurationProvider configurationProvider, IMapper mapper)
+    public GenericRepository(
+        ReservacionDbContext dbContext,
+        IConfigurationProvider configurationProvider,
+        IMapper mapper
+    )
     {
         DbContext = dbContext;
         _configurationProvider = configurationProvider;
