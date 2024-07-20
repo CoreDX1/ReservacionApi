@@ -13,7 +13,7 @@ public class ApiResult<T>
     internal ResponseMetadata Metadata { get; set; } = new ResponseMetadata();
 
     [JsonInclude]
-    public IEnumerable<string> Errors { get; protected set; } = [];
+    public List<string> Errors { get; set; } = [];
 
     protected ApiResult(T value)
     {
@@ -78,6 +78,14 @@ public class ApiResult<T>
     public static ApiResult<T> NoContent()
     {
         return new ApiResult<T>(HttpStatusCode.NoContent);
+    }
+
+    public static ApiResult<T> Validate(List<string> errorMessage)
+    {
+        return new ApiResult<T>(HttpStatusCode.BadRequest, ReplyMessage.Validate.ValidateError)
+        {
+            Errors = errorMessage
+        };
     }
 }
 
