@@ -1,6 +1,7 @@
 using FluentValidation;
 using ReservacionesApi.Application.Contracts.Persistence;
 using ReservacionesApi.Application.Dtos;
+using ReservacionesApi.Application.Dtos.User.Request;
 using ReservacionesApi.Application.Exceptions;
 using ReservacionesApi.Application.Interfaces;
 using ReservacionesApi.Domain.Common;
@@ -12,11 +13,17 @@ public class UserService : IUserService
 {
     private readonly IUnitOfWork UnitOfWork;
     private readonly IValidator<UserRequestDto> _validator;
+    private readonly IValidator<UserLoginRequestDto> _login;
 
-    public UserService(IUnitOfWork unitOfWork, IValidator<UserRequestDto> validator)
+    public UserService(
+        IUnitOfWork unitOfWork,
+        IValidator<UserRequestDto> validator,
+        IValidator<UserLoginRequestDto> login
+    )
     {
         UnitOfWork = unitOfWork;
         _validator = validator;
+        _login = login;
     }
 
     public async Task<ApiResult<IReadOnlyList<UserResponseDto>>> UserListAsync()

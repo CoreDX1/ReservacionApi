@@ -16,4 +16,13 @@ public class UserRespository : GenericRepository<User>, IUserRepository
         IQueryable<User> query = DbContext.Set<User>().Where(u => u.Email == email);
         return query.Any();
     }
+
+    public Task<User> LoginUserAsync(User user)
+    {
+        var query = DbContext
+            .Set<User>()
+            .FirstOrDefaultAsync(u => u.Email == user.Email && u.PasswordHash == user.PasswordHash);
+
+        return query!;
+    }
 }
