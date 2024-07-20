@@ -3,17 +3,17 @@ using FluentValidation.Results;
 namespace ReservacionesApi.Application.Exceptions;
 
 // TOREVIEW: Investigar que hace Exception
-public class ValidationException : Exception
+public class ValidationExceptionDto : Exception
 {
     public List<string> Errors { get; set; }
 
-    public ValidationException()
+    public ValidationExceptionDto()
         : base("Se han producido uno o varios errores de validación.")
     {
         Errors = [];
     }
 
-    public ValidationException(IEnumerable<ValidationFailure> failures)
+    public ValidationExceptionDto(IEnumerable<ValidationFailure> failures)
         : this()
     {
         foreach (var failure in failures)
