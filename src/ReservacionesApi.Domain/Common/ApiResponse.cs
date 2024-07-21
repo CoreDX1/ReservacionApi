@@ -7,7 +7,7 @@ namespace ReservacionesApi.Domain.Common;
 public class ApiResult<T>
 {
     [JsonInclude]
-    internal T? Value { get; set; }
+    internal T? Data { get; set; }
 
     [JsonInclude]
     internal ResponseMetadata Metadata { get; set; } = new ResponseMetadata();
@@ -15,9 +15,9 @@ public class ApiResult<T>
     [JsonInclude]
     public List<string> Errors { get; set; } = [];
 
-    protected ApiResult(T value)
+    protected ApiResult(T data)
     {
-        Value = value;
+        Data = data;
     }
 
     protected ApiResult(HttpStatusCode statusCode)
@@ -30,8 +30,8 @@ public class ApiResult<T>
         Metadata = new ResponseMetadata(message, statusCode);
     }
 
-    // protected internal ApiResult(T value, string successMessage)
-    //     : this(value)
+    // protected internal ApiResult(T data, string successMessage)
+    //     : this(data)
     // {
     //     SuccessMessage = successMessage;
     // }
@@ -39,11 +39,11 @@ public class ApiResult<T>
     /// <summary>
     /// Representa una operación exitosa y acepta valores como resultado de la operación
     /// </summary>
-    /// <param name="value">Establece la propiedad Value</param>
+    /// <param name="data">Establece la propiedad Value</param>
     /// <returns>Un ApiResult</returns>
-    public static ApiResult<T> Succes(T value)
+    public static ApiResult<T> Succes(T data)
     {
-        return new ApiResult<T>(HttpStatusCode.OK, ReplyMessage.Success.Query) { Value = value };
+        return new ApiResult<T>(HttpStatusCode.OK, ReplyMessage.Success.Query) { Data = data };
     }
 
     /// <summary>
@@ -58,11 +58,11 @@ public class ApiResult<T>
     /// <summary>
     /// Representa un operacion exitosa que crea un nuevo valor
     /// </summary>
-    /// <param name="value">El tipo de valor que se crea</param>
+    /// <param name="data">El tipo de valor que se crea</param>
     /// <returns></returns>
-    public static ApiResult<T> Created(T value)
+    public static ApiResult<T> Created(T data)
     {
-        return new ApiResult<T>(HttpStatusCode.OK, ReplyMessage.Success.Save) { Value = value };
+        return new ApiResult<T>(HttpStatusCode.OK, ReplyMessage.Success.Save) { Data = data };
     }
 
     public static ApiResult<T> Created()
@@ -82,10 +82,15 @@ public class ApiResult<T>
 
     public static ApiResult<T> Validate(List<string> errorMessage)
     {
-        return new ApiResult<T>(HttpStatusCode.BadRequest, ReplyMessage.Validate.ValidateError)
+        return new ApiResult<T>(HttpStatusCode.Unauthorized, ReplyMessage.Validate.ValidateError)
         {
             Errors = errorMessage
         };
+    }
+
+    public static ApiResult<T> Login(T data)
+    {
+        return new ApiResult<T>(HttpStatusCode.OK, ReplyMessage.Info.Login) { Data = data };
     }
 }
 
