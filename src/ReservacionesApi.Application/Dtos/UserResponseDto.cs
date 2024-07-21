@@ -1,3 +1,10 @@
 namespace ReservacionesApi.Application.Dtos;
 
-public record UserResponseDto(int UserId, string UserName, string Email, string FullName, string? PhoneNumber);
+public class UserResponseDto
+{
+    public int Id { get; set; }
+    public string? Name { get; set; }
+    public string? Email { get; set; }
+    public string? FullName { get; set; }
+    public string? PhoneNumber { get; set; }
+};
