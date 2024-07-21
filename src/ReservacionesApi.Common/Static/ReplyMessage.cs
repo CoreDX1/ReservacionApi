@@ -37,5 +37,6 @@ public class ReplyMessage
     public static class Info
     {
         public const string Logout = "Sesión cerrada correctamente";
+        public const string Login = "Sesión iniciada correctamente";
     }
 }
