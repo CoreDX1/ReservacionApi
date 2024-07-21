@@ -16,6 +16,7 @@ var configuration = builder.Configuration;
 // add services to the container.
 builder.Services.AddPersistenceServices(configuration);
 builder.Services.AddApplicationLayer();
+builder.Services.AddRouting(r => r.LowercaseUrls = true);
 
 var app = builder.Build();
 
