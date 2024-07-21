@@ -6,5 +6,6 @@ namespace ReservacionesApi.Application.Contracts.Persistence;
 public interface IUserRepository : IGenericRepositoryAsync<User>, IReadRepository<User>
 {
     bool IsUniqueEmail(string email);
-    Task<User> LoginUserAsync(User user);
+
+    Task<User> LoginUserAsync<T>(T user);
 }
