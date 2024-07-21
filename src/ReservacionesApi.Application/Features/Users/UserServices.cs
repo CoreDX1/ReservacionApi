@@ -1,3 +1,4 @@
+using AutoMapper;
 using FluentValidation;
 using ReservacionesApi.Application.Contracts.Persistence;
 using ReservacionesApi.Application.Dtos;
@@ -14,16 +15,19 @@ public class UserService : IUserService
     private readonly IUnitOfWork UnitOfWork;
     private readonly IValidator<UserRequestDto> _validator;
     private readonly IValidator<UserLoginRequestDto> _login;
+    private readonly IMapper mapper;
 
     public UserService(
         IUnitOfWork unitOfWork,
         IValidator<UserRequestDto> validator,
-        IValidator<UserLoginRequestDto> login
+        IValidator<UserLoginRequestDto> login,
+        IMapper mapper
     )
     {
         UnitOfWork = unitOfWork;
         _validator = validator;
         _login = login;
+        this.mapper = mapper;
     }
 
     public async Task<ApiResult<IReadOnlyList<UserResponseDto>>> UserListAsync()
@@ -71,5 +75,26 @@ public class UserService : IUserService
         }
 
         return ApiResult<User>.Created();
+    }
+
+    public async Task<ApiResult<UserResponseDto>> LoginUserAsync(UserLoginRequestDto userLoginRequestDto)
+    {
+        // Valida los datos.
+        var userValidate = await _login.ValidateAsync(userLoginRequestDto);
+        var errorValidate = new ValidationExceptionDto(userValidate.Errors);
+
+        if (!userValidate.IsValid)
+        {
+            return ApiResult<UserResponseDto>.Validate(errorValidate.Errors);
+        }
+
+        User user = await UnitOfWork.User.LoginUserAsync(userLoginRequestDto);
+
+        if (user == null)
+        {
+            return ApiResult<UserResponseDto>.NotFound();
+        }
+
+        return ApiResult<UserResponseDto>.Login(mapper.Map<UserResponseDto>(user));
     }
 }
