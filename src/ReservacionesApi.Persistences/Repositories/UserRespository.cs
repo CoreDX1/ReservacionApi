@@ -17,12 +17,15 @@ public class UserRespository : GenericRepository<User>, IUserRepository
         return query.Any();
     }
 
-    public Task<User> LoginUserAsync(User user)
+    public async Task<User> LoginUserAsync<T>(T userLoginRequestDto)
     {
-        var query = DbContext
+        var mapedUser = mapper.Map<User>(userLoginRequestDto);
+        var user = await DbContext
             .Set<User>()
-            .FirstOrDefaultAsync(u => u.Email == user.Email && u.PasswordHash == user.PasswordHash);
+            .AsNoTracking()
+            .Where(x => x.PasswordHash == mapedUser.PasswordHash && x.Email == mapedUser.Email)
+            .FirstOrDefaultAsync();
 
-        return query!;
+        return user!;
     }
 }
