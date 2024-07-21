@@ -1,19 +1,19 @@
 @Host = http://localhost:5030
 
 ### Listar todos los usuarios
-GET {{Host}}/api/User/list HTTP/1.1
+GET {{Host}}/api/user/list HTTP/1.1
 Content-Type: application/json
 
 ### Recuperar un usuario
-GET {{Host}}/api/User/1 HTTP/1.1
+GET {{Host}}/api/user/42 HTTP/1.1
 Content-Type: application/json
 
 ### Cantidad de usuarios
-GET {{Host}}/api/User/count HTTP/1.1
+GET {{Host}}/api/user/count HTTP/1.1
 Content-Type: application/json
 
 ### Crear un usuario
-POST {{Host}}/api/User/add HTTP/1.1
+POST {{Host}}/api/user/add HTTP/1.1
 Content-Type: application/json
 
 {
@@ -23,4 +23,13 @@ Content-Type: application/json
   "emailVerified": true,
   "fullName": "Christian Mamani Quispe",
   "phoneNumber": "15451231"
+}
+
+### Iniciar sesion
+POST {{Host}}/api/user/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "chismaquis@hotmail.com",
+  "passwordHash": "index#123"
 }
