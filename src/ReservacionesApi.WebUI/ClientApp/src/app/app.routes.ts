@@ -4,7 +4,11 @@ import LoginComponent from './component/login/login.component';
 export const routes: Routes = [
 	{
 		path: 'login',
-		component: LoginComponent,
+		loadComponent: () => import('./component/login/login.component'),
+	},
+	{
+		path: 'home',
+		loadComponent: () => import('./component/home/home.component'),
 	},
 	{
 		path: '',
