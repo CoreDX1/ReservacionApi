@@ -90,11 +90,13 @@ public class UserService : IUserService
 
         User user = await UnitOfWork.User.LoginUserAsync(userLoginRequestDto);
 
+        var userMap = mapper.Map<UserResponseDto>(user);
+
         if (user == null)
         {
             return ApiResult<UserResponseDto>.NotFound();
         }
 
-        return ApiResult<UserResponseDto>.Login(mapper.Map<UserResponseDto>(user));
+        return ApiResult<UserResponseDto>.Login(userMap);
     }
 }

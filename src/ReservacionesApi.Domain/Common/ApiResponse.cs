@@ -7,13 +7,13 @@ namespace ReservacionesApi.Domain.Common;
 public class ApiResult<T>
 {
     [JsonInclude]
-    internal T? Data { get; set; }
+    internal T? Data { get; private set; }
 
     [JsonInclude]
-    internal ResponseMetadata Metadata { get; set; } = new ResponseMetadata();
+    internal ResponseMetadata Metadata { get; private set; } = new ResponseMetadata();
 
-    [JsonInclude]
-    public List<string> Errors { get; set; } = [];
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public List<string>? Errors { get; private set; }
 
     protected ApiResult(T data)
     {
