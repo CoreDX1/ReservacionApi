@@ -1,9 +1,11 @@
-import { Component } from '@angular/core'
+import { Component } from '@angular/core';
 
 @Component({
-    selector: 'app-login',
-    standalone: true,
-    imports: [],
-    templateUrl: './login.component.html',
+	selector: 'app-login',
+	standalone: true,
+	imports: [],
+	templateUrl: './login.component.html',
 })
-export class LoginComponent {}
+export default class LoginComponent {
+	public title: string = 'Estoy en el componente login';
+}
