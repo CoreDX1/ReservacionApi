@@ -1,18 +1,19 @@
 import { Component } from '@angular/core';
-import { NavigationStart, Router, RouterOutlet } from '@angular/router';
-import { MenuComponent } from './component/menu/menu.component';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { FooterComponent } from './component/footer/footer.component';
 import { NgIf } from '@angular/common';
+import { MenuComponent } from './component/menu/menu.component';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
 	selector: 'app-root',
 	standalone: true,
-	imports: [RouterOutlet, MenuComponent, FooterComponent, NgIf],
+	imports: [RouterOutlet, FooterComponent, NgIf, MenuComponent],
 	templateUrl: './app.component.html',
 })
 export class AppComponent {
-	showHeader = true;
-	showFooter = true;
+	showHeader = false;
+	showFooter = false;
 
 	private readonly excludeRoutes = [
 		{
@@ -32,15 +33,17 @@ export class AppComponent {
 		},
 	];
 
+	isLoading = new BehaviorSubject<Boolean>(false);
+
 	constructor(private router: Router) {
 		router.events.subscribe((event) => {
-			if (event instanceof NavigationStart) {
+			if (event instanceof NavigationEnd) {
 				// TODO: Implementar spinner de carga
-				for (const route of this.excludeRoutes) {
-					if (event.url == route.path) {
-						this.showHeader = route.header;
-						this.showFooter = route.footer;
-					}
+				this.isLoading.next(true);
+				const routeConfig = this.excludeRoutes.find((route) => route.path === event.url);
+				if (routeConfig) {
+					this.showHeader = routeConfig.header;
+					this.showFooter = routeConfig.footer;
 				}
 			}
 		});
