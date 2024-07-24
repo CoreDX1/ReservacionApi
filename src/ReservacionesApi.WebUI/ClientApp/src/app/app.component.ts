@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavigationEnd, NavigationStart, Router, RouterOutlet } from '@angular/router';
+import { NavigationStart, Router, RouterOutlet } from '@angular/router';
 import { MenuComponent } from './component/menu/menu.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { NgIf } from '@angular/common';
@@ -11,21 +11,35 @@ import { NgIf } from '@angular/common';
 	templateUrl: './app.component.html',
 })
 export class AppComponent {
-	public title: string = 'Hola mundo 2222';
+	showHeader = true;
+	showFooter = true;
 
-	public showHeader: boolean = true;
-	public showFooter: boolean = true;
-
-	private readonly excludeRoutes = ['/login', '/admin'];
+	private readonly excludeRoutes = [
+		{
+			path: '/login',
+			header: false,
+			footer: false,
+		},
+		{
+			path: '/admin',
+			header: true,
+			footer: true,
+		},
+		{
+			path: '/home',
+			header: true,
+			footer: true,
+		},
+	];
 
 	constructor(private router: Router) {
 		router.events.subscribe((event) => {
 			if (event instanceof NavigationStart) {
 				// TODO: Implementar spinner de carga
 				for (const route of this.excludeRoutes) {
-					if (event.url.includes(route)) {
-						this.showHeader = false;
-						this.showFooter = false;
+					if (event.url == route.path) {
+						this.showHeader = route.header;
+						this.showFooter = route.footer;
 					}
 				}
 			}
