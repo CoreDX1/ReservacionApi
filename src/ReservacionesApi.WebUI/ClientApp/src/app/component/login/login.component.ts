@@ -6,6 +6,4 @@ import { Component } from '@angular/core';
 	imports: [],
 	templateUrl: './login.component.html',
 })
-export default class LoginComponent {
-	public title: string = 'Estoy en el componente login';
-}
+export default class LoginComponent {}
