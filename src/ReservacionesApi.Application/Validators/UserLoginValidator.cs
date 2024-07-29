@@ -13,6 +13,10 @@ public class UserLoginValidator : AbstractValidator<UserLoginRequestDto>
             .EmailAddress()
             .WithMessage("Email is not valid");
 
-        RuleFor(x => x.PasswordHash).NotEmpty().WithMessage("Password is required");
+        RuleFor(x => x.PasswordHash)
+            .NotEmpty()
+            .WithMessage("Password is required")
+            .Length(5, 20)
+            .WithMessage("Password must be between 5 and 20 characters");
     }
 }
