@@ -24,7 +24,9 @@ export class LoginComponent {
 	public UserLogin() {
 		this.userService.LoginAsync(this.user).subscribe((response) => {
 			this.ApiResponse = response;
-			this.IsErrorMessage = this.ApiResponse.errors.length > 0;
+			if (this.ApiResponse.metadata.statusCode == 401) {
+				this.IsErrorMessage = true;
+			}
 			console.log(this.ApiResponse);
 		});
 	}
