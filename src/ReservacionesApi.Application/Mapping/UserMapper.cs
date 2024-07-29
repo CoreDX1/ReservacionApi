@@ -1,6 +1,6 @@
 using AutoMapper;
-using ReservacionesApi.Application.Dtos;
 using ReservacionesApi.Application.Dtos.User.Request;
+using ReservacionesApi.Application.Dtos.User.Response;
 using ReservacionesApi.Domain.Entities;
 
 namespace ReservacionesApi.Application.Mapping;
