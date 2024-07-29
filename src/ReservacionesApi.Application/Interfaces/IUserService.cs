@@ -1,5 +1,5 @@
-using ReservacionesApi.Application.Dtos;
 using ReservacionesApi.Application.Dtos.User.Request;
+using ReservacionesApi.Application.Dtos.User.Response;
 using ReservacionesApi.Domain.Common;
 using ReservacionesApi.Domain.Entities;
 

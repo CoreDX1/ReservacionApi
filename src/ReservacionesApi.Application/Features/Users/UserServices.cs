@@ -1,8 +1,9 @@
 using AutoMapper;
 using FluentValidation;
+using FluentValidation.Results;
 using ReservacionesApi.Application.Contracts.Persistence;
-using ReservacionesApi.Application.Dtos;
 using ReservacionesApi.Application.Dtos.User.Request;
+using ReservacionesApi.Application.Dtos.User.Response;
 using ReservacionesApi.Application.Exceptions;
 using ReservacionesApi.Application.Interfaces;
 using ReservacionesApi.Domain.Common;
@@ -62,10 +63,10 @@ public class UserService : IUserService
 
         var errorValidate = new ValidationExceptionDto(userValidate.Errors);
 
-        if (!userValidate.IsValid)
-        {
-            return ApiResult<User>.Validate(errorValidate.Errors);
-        }
+        // if (!userValidate.IsValid)
+        // {
+        //     return ApiResult<User>.Validate(errorValidate.Errors);
+        // }
 
         bool user = await UnitOfWork.User.AddAsync(userRequestDto);
 
@@ -81,11 +82,12 @@ public class UserService : IUserService
     {
         // Valida los datos.
         var userValidate = await _login.ValidateAsync(userLoginRequestDto);
+
         var errorValidate = new ValidationExceptionDto(userValidate.Errors);
 
         if (!userValidate.IsValid)
         {
-            return ApiResult<UserResponseDto>.Validate(errorValidate.Errors);
+            return ApiResult<UserResponseDto>.Validate(UserLoginErrors(userValidate));
         }
 
         User user = await UnitOfWork.User.LoginUserAsync(userLoginRequestDto);
@@ -98,5 +100,20 @@ public class UserService : IUserService
         }
 
         return ApiResult<UserResponseDto>.Login(userMap);
+    }
+
+    private UserLoginErrors UserLoginErrors(ValidationResult validationResult)
+    {
+        var passwordErrorsMessage = validationResult
+            .Errors.Where(x => x.PropertyName == "PasswordHash")
+            .Select(x => x.ErrorMessage)
+            .ToList();
+
+        var emailErrorsMessage = validationResult
+            .Errors.Where(x => x.PropertyName == "Email")
+            .Select(x => x.ErrorMessage)
+            .ToList();
+
+        return new UserLoginErrors { EmailErorrs = emailErrorsMessage, PasswordErorrs = passwordErrorsMessage };
     }
 }
