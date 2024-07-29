@@ -1,6 +1,6 @@
 using FluentValidation;
 using ReservacionesApi.Application.Contracts.Persistence;
-using ReservacionesApi.Application.Dtos;
+using ReservacionesApi.Application.Dtos.User.Request;
 
 namespace ReservacionesApi.Application.Validators;
 
