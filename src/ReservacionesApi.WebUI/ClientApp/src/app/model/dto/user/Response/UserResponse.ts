@@ -1,6 +1,7 @@
 export interface UserResponse<T> {
 	data: T;
 	metadata: Metadata;
+	errors: string[];
 }
 
 export interface UserLoginResponse {
