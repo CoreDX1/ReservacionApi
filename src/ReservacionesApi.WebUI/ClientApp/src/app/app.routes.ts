@@ -1,7 +1,7 @@
 import { provideRouter, Routes } from '@angular/router';
-import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
-import { HomeComponent } from './component/home/home.component';
-import { LoginComponent } from './component/login/login.component';
+import { PageNotFoundComponent } from './common/component/page-not-found/page-not-found.component';
+import { HomeComponent } from './common/component/home/home.component';
+import { LoginComponent } from './login/component/login/login.component';
 
 export const routes: Routes = [
 	{

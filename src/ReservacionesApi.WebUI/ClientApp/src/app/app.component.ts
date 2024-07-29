@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { FooterComponent } from './component/footer/footer.component';
+import { FooterComponent } from './common/component/footer/footer.component';
 import { NgIf } from '@angular/common';
-import { MenuComponent } from './component/menu/menu.component';
+import { MenuComponent } from './common/component/menu/menu.component';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({

@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { UserLoginRequest } from '../model/dto/user/Request/UserLoginRequest';
-import { UserLoginResponse, UserResponse } from '../model/dto/user/Response/UserResponse';
 import { Observable } from 'rxjs';
+import { UserLoginRequest } from '../../../login/model/UserLoginRequest';
+import { UserLoginResponse, UserResponse } from '../../../model/dto/user/Response/UserResponse';
 
 @Injectable({
 	providedIn: 'root',
