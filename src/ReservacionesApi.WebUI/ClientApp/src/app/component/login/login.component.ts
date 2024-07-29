@@ -10,24 +10,21 @@ import { UserLoginRequest } from '../../model/dto/user/Request/UserLoginRequest'
 	imports: [ReactiveFormsModule, FormsModule],
 	templateUrl: './login.component.html',
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 	public ApiResponse = {} as UserResponse<UserLoginResponse>;
+	public IsErrorMessage = false;
 
 	private userService = inject(UserService);
 
 	public user: UserLoginRequest = {
-		passwordHash: 'index#123',
-		email: 'chismaquis@hotmail.com',
+		passwordHash: '',
+		email: '',
 	};
 
-	ngOnInit(): void {
-		this.UserLogin(this.user);
-		console.log(this.ApiResponse);
-	}
-
-	public UserLogin(user: UserLoginRequest) {
-		this.userService.LoginAsync(user).subscribe((response) => {
+	public UserLogin() {
+		this.userService.LoginAsync(this.user).subscribe((response) => {
 			this.ApiResponse = response;
+			this.IsErrorMessage = this.ApiResponse.errors.length > 0;
 			console.log(this.ApiResponse);
 		});
 	}
