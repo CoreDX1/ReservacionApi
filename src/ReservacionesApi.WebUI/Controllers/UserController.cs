@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using ReservacionesApi.Application.Dtos;
 using ReservacionesApi.Application.Dtos.User.Request;
 using ReservacionesApi.Application.Interfaces;
 
