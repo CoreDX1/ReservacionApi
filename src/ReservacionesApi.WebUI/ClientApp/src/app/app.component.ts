@@ -33,14 +33,12 @@ export class AppComponent {
 		},
 	];
 
-	isLoading = new BehaviorSubject<Boolean>(false);
-
 	constructor(private router: Router) {
 		router.events.subscribe((event) => {
 			if (event instanceof NavigationEnd) {
 				// TODO: Implementar spinner de carga
-				this.isLoading.next(true);
 				const routeConfig = this.excludeRoutes.find((route) => route.path === event.url);
+
 				if (routeConfig) {
 					this.showHeader = routeConfig.header;
 					this.showFooter = routeConfig.footer;
