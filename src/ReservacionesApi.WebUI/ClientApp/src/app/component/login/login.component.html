@@ -14,7 +14,9 @@
 				<!--- Email -->
 				<div>
 					@if (IsErrorMessage) {
-						<div class="text-red-500">{{ ApiResponse.errors }}</div>
+						@for (error of this.ApiResponse.loginErrors.emailErorrs; track $index) {
+							<p class="text-red-500">{{ error }}</p>
+						}
 					}
 
 					<label for="email" class="block text-sm font-medium leading-5 text-gray-700">Email address</label>
@@ -35,6 +37,11 @@
 
 				<!--- Password -->
 				<div class="mt-6">
+					@if (IsErrorMessage) {
+						@for (error of this.ApiResponse.loginErrors.passwordErorrs; track $index) {
+							<p class="text-red-500">{{ error }}</p>
+						}
+					}
 					<label for="password" class="block text-sm font-medium leading-5 text-gray-700">Password</label>
 					<div class="mt-1 rounded-md shadow-sm">
 						<input
