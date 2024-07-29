@@ -11,6 +11,19 @@ builder.Services.AddSwaggerGen();
 // add services to the container.
 builder.Services.AddControllers();
 
+var AllowOrigins = "AllowOrigins";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(
+        name: AllowOrigins,
+        builder =>
+        {
+            builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+        }
+    );
+});
+
 var configuration = builder.Configuration;
 
 // add services to the container.
@@ -31,8 +44,10 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+app.UseCors(AllowOrigins);
+
 app.UseHttpsRedirection();
 
+// add endpoints for the API
 app.MapControllers();
-
 app.Run();
