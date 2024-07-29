@@ -12,8 +12,10 @@ public class ApiResult<T>
     [JsonInclude]
     internal ResponseMetadata Metadata { get; private set; } = new ResponseMetadata();
 
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    [JsonInclude]
     public List<string>? Errors { get; private set; }
+
+    public UserLoginErrors LoginErrors { get; private set; } = new UserLoginErrors();
 
     protected ApiResult(T data)
     {
@@ -29,12 +31,6 @@ public class ApiResult<T>
     {
         Metadata = new ResponseMetadata(message, statusCode);
     }
-
-    // protected internal ApiResult(T data, string successMessage)
-    //     : this(data)
-    // {
-    //     SuccessMessage = successMessage;
-    // }
 
     /// <summary>
     /// Representa una operación exitosa y acepta valores como resultado de la operación
@@ -80,11 +76,11 @@ public class ApiResult<T>
         return new ApiResult<T>(HttpStatusCode.NoContent);
     }
 
-    public static ApiResult<T> Validate(List<string> errorMessage)
+    public static ApiResult<T> Validate(UserLoginErrors errorMessage)
     {
         return new ApiResult<T>(HttpStatusCode.Unauthorized, ReplyMessage.Validate.ValidateError)
         {
-            Errors = errorMessage
+            LoginErrors = errorMessage
         };
     }
 
@@ -117,4 +113,10 @@ public class ResponseMetadata
     }
 
     public ResponseMetadata() { }
+}
+
+public class UserLoginErrors
+{
+    public List<string> EmailErorrs { get; set; } = [];
+    public List<string> PasswordErorrs { get; set; } = [];
 }
